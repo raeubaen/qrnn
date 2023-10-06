@@ -1,0 +1,37 @@
+- aggiunto argomenti in make_dataframes
+
+branches e variables in make_dataframes - originale:
+
+    Branches = ['probeScEta', 'weight', 'probeSigmaRR', 'tagChIso03', 'tagR9', 'tagPhiWidth_Sc', 'probePt', 'tagSigmaRR', 'puweight', 
+                'tagEleMatch', 'tagPhi', 'probeScEnergy', 'nvtx', 'tagPhoIso', 'run', 'tagScEta', 'probeEleMatch', 'tagPt', 'rho', 
+                'tagS4', 'tagSigmaIeIe', 'tagCovarianceIpIp', 'tagCovarianceIeIp', 'tagScEnergy', 'tagChIso03worst', 'probePhi', 
+                'mass', 'probeCovarianceIpIp', 'tagEtaWidth_Sc', 'probeHoE', 'probeFull5x5_e1x5', 'probeFull5x5_e5x5', 'probeNeutIso', 
+                'probePassEleVeto']
+
+    variables = ['probeEtaWidth_Sc', 'probeR9', 'probeS4', 'probePhiWidth_Sc', 'probeSigmaIeIe', 'probeCovarianceIeIp', 
+                'probeChIso03', 'probeChIso03worst', 'probeesEnergyOverSCRawEnergy'] 
+
+
+
+dificate:
+
+mod = ['probe_eta', 'probe_esEffSigmaRR', 'tag_pfChargedChIso03',
+                'tag_r9', 'tag_phiWidth', 'probe_pt', 'tag_esEffSigmaRR',
+                'tag_phi', 'probe_energy',
+                'tag_pfPhoIso03', 'tag_eta',
+                'tag_pt', 'tag_s4', 'tag_sieie',
+                'tag_sipip', 'tag_sieip', 'tag_energy',
+                'tag_pfChargedIsoWorstVtx', 'probe_phi', 'probe_sipip',
+                'tag_etaWidth', 'probe_hoe',
+                'probe_pfRelIso03_all_Fall17V2', 'probe_electronVeto', 'probe_etaWidth', 'probe_r9', 'probe_s4',
+                'probe_phiWidth', 'probe_sieie',
+                'probe_sieip', 'probe_pfChargedChIso03',
+                'probe_pfChargedIsoWorstVtx', 'probe_esEnergyOverRawE']
+
+orig = ['probeScEta', 'probeSigmaRR', 'tagChIso03', 'tagR9', 'tagPhiWidth_Sc', 'probePt', 'tagSigmaRR',    
+                'tagPhi', 'probeScEnergy', 'tagPhoIso', 'tagScEta', 'tagPt',       
+                'tagS4', 'tagSigmaIeIe', 'tagCovarianceIpIp', 'tagCovarianceIeIp', 'tagScEnergy', 'tagChIso03worst', 'probePhi', 
+                'probeCovarianceIpIp', 'tagEtaWidth_Sc', 'probeHoE', 'probeNeutIso',
+                'probePassEleVeto', 'probeEtaWidth_Sc', 'probeR9', 'probeS4', 'probePhiWidth_Sc', 'probeSigmaIeIe', 'probeCovarianceIeIp',
+                'probeChIso03', 'probeChIso03worst', 'probeesEnergyOverSCRawEnergy']
+
