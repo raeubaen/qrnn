@@ -32,7 +32,7 @@ def main(options):
     #load dataframe
 #    nEvt = 1500000
     query_preshower = 'probeScEta<-1.653 or probeScEta>1.653'
-    df_train = (pd.read_hdf(inputmc).query(query_preshower)).sample(nEvt, random_state=100).reset_index(drop=True)
+    df_train = (pd.read_hdf(inputmc).query(query_preshower)).sample(nEvt, random_state=100, replace=True).reset_index(drop=True)
 
     #transform features and targets
     transformer_file = 'data_{}'.format(EBEE)

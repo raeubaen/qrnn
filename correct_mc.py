@@ -112,33 +112,33 @@ def main(options):
     else: 
         vars_qrnn = variables+preshower
 
-#    if var_type == 'SS' or var_type == 'all':
-#        for target in variables: 
-#            features = kinrho + ['{}_corr'.format(x) for x in variables[:variables.index(target)]]
-#            
-#            X = df_mc.loc[:,features]
-#            Y = df_mc.loc[:,target]
-#            
-#            models_mc = '{}/{}_{}_{}'.format(modeldir, 'mc', EBEE, target)
-#            models_d = '{}/{}_{}_{}'.format(modeldir, 'data', EBEE, target)
-#            print('Correct {} with features {}'.format(target, features))
-#            df_mc['{}_corr'.format(target)] = parallelize(applyCorrection, X, Y, models_mc, models_d, diz=False)
-#
-##        if final:
-#        print('Correct {} with features {}'.format(preshower[0], features))
-#        if EBEE == 'EE': 
-#            features = kinrho + ['{}_corr'.format(x) for x in variables]
-##            df_mc.loc[np.abs(df_mc['probeScEta_orignal'])<=1.653, '{}_corr'.format(preshower[0])] = df_mc.loc[np.abs(df_mc['probeScEta_orignal'])<=1.653, preshower[0]]
-#            df_mc.loc[np.abs(df_mc['probeScEta_orignal'])<=1.653, '{}_corr'.format(preshower[0])] = 0.
-#            df_mc.loc[np.abs(df_mc['probeScEta_orignal'])>1.653, '{}_corr'.format(preshower[0])] = parallelize(applyCorrection, 
-#                df_mc.loc[np.abs(df_mc['probeScEta_orignal'])>1.653, features], 
-#                df_mc.loc[np.abs(df_mc['probeScEta_orignal'])>1.653, preshower[0]], 
-#                '{}/{}_{}_{}'.format(modeldir, 'mc', EBEE, preshower[0]),
-#                '{}/{}_{}_{}'.format(modeldir, 'data', EBEE, preshower[0]),
-#                diz=False, 
-#                )
-#        else: 
-#            df_mc['{}_corr'.format(preshower[0])] = 0.
+    if var_type == 'SS' or var_type == 'all':
+         for target in variables: 
+             features = kinrho + ['{}_corr'.format(x) for x in variables[:variables.index(target)]]
+             
+             X = df_mc.loc[:,features]
+             Y = df_mc.loc[:,target]
+             
+             models_mc = '{}/{}_{}_{}'.format(modeldir, 'mc', EBEE, target)
+             models_d = '{}/{}_{}_{}'.format(modeldir, 'data', EBEE, target)
+             print('Correct {} with features {}'.format(target, features))
+             df_mc['{}_corr'.format(target)] = parallelize(applyCorrection, X, Y, models_mc, models_d, diz=False)
+ 
+    if final:
+         print('Correct {} with features {}'.format(preshower[0], features))
+         if EBEE == 'EE': 
+             features = kinrho + ['{}_corr'.format(x) for x in variables]
+             df_mc.loc[np.abs(df_mc['probeScEta_orignal'])<=1.653, '{}_corr'.format(preshower[0])] = df_mc.loc[np.abs(df_mc['probeScEta_orignal'])<=1.653, preshower[0]]
+             df_mc.loc[np.abs(df_mc['probeScEta_orignal'])<=1.653, '{}_corr'.format(preshower[0])] = 0.
+             df_mc.loc[np.abs(df_mc['probeScEta_orignal'])>1.653, '{}_corr'.format(preshower[0])] = parallelize(applyCorrection, 
+                 df_mc.loc[np.abs(df_mc['probeScEta_orignal'])>1.653, features], 
+                 df_mc.loc[np.abs(df_mc['probeScEta_orignal'])>1.653, preshower[0]], 
+                 '{}/{}_{}_{}'.format(modeldir, 'mc', EBEE, preshower[0]),
+                 '{}/{}_{}_{}'.format(modeldir, 'data', EBEE, preshower[0]),
+                 diz=False, 
+                 )
+         else: 
+             df_mc['{}_corr'.format(preshower[0])] = 0.
 
     
     if var_type == 'Iso' or var_type == 'all':
@@ -161,6 +161,8 @@ def main(options):
             models_d = '{}/{}_{}_{}'.format(modeldir, 'data', EBEE, target)
             print('Correct {} with features {}'.format(target, features))
             df_mc['{}_corr'.format(target)] = parallelize(applyCorrection, X, Y, models_mc, models_d, diz=True)
+
+        print(df_mc.columns)
  
     vars_corr = ['{}_corr'.format(target) for target in variables] 
     if var_type == 'SS' or var_type == 'all':
@@ -197,9 +199,6 @@ def main(options):
         print('time spent in computing photon ID MVA: {} s'.format(time() - id_start))
 
     print(df_mc.keys())
-#    df_mc.to_hdf('{}/df_mc_{}_all_corr.h5'.format(outdir,EBEE),'df',mode='w',format='t')
-#    df_mc.to_hdf('{}/df_mc_{}_{}_corr.h5'.format(outdir,EBEE,data_type),'df',mode='w',format='t')
-#    df_mc.to_hdf('{}/df_mc_{}_Iso_{}_corr.h5'.format(outdir,EBEE,data_type),'df',mode='w',format='t')
 
     if inputmc.endswith('_corr.h5') or inputmc.endswith('_corr_final.h5'):
         df_mc.to_hdf(f'{outdir}/{inputmc}','df',mode='w',format='t')

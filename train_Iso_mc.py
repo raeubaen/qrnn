@@ -54,7 +54,7 @@ def main(options):
     #load dataframe
 #    nEvt = 3500000
     nEvt = options.nEvt
-    df_train = (pd.read_hdf(inputtrain).loc[:,kinrho+variables+weight]).sample(nEvt, random_state=100).reset_index(drop=True)
+    df_train = (pd.read_hdf(inputtrain).loc[:,kinrho+variables+weight]).sample(nEvt, random_state=100, replace=True).reset_index(drop=True)
 #    df_train = ((pd.read_hdf('from_massi/weighted_dfs/df_mc_EB_Iso_test.h5').loc[:,kinrho+variables])[:nEvt]).reset_index(drop=True)
      
     if spl in [1, 2]: 

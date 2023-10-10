@@ -3,8 +3,8 @@ import pandas as pd
 import matplotlib
 from matplotlib import pyplot as plt
 from sklearn import preprocessing 
-import pickle
 import gzip
+import pickle
 
 def showDist(df, variables, title, file_name, nrows, ncols, figsize): 
     fig, axs = plt.subplots(nrows,ncols,figsize=figsize,tight_layout=True)

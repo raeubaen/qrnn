@@ -34,7 +34,7 @@ def main(options):
    
     #load dataframe
     nEvt = options.nEvt
-    df_train = (pd.read_hdf(inputmc)).sample(nEvt, random_state=100).reset_index(drop=True)
+    df_train = (pd.read_hdf(inputmc)).sample(nEvt, random_state=100, replace=True).reset_index(drop=True)
 
     #transform features and targets
     transformer_file = 'data_{}'.format(EBEE)

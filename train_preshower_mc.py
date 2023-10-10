@@ -35,16 +35,14 @@ def main(options):
      
     spl = options.split
     if spl in [1, 2]: 
-        inputtrain = 'dfs_corr/df_{}_{}_train_split{}_corr.h5'.format(data_key, EBEE, spl)
-        nEvt = options.nEvt
+        inputtrain = 'dfs_sys/split{}/df_{}_{}_train_split{}_corr.h5'.format(spl, data_key, EBEE, spl)
     else: 
         inputtrain = 'dfs_corr/df_{}_{}_train_corr.h5'.format(data_key, EBEE)
-        nEvt = options.nEvt
         print(f"Wrong argument '-s' ('--split'), argument must have value 1 or 2. Now using defalt dataframe {inputtrain}")
 #    inputtest = 'weighted_dfs/df_{}_{}_test.h5'.format(data_key, EBEE)
    
     #load dataframe
-#    nEvt = 850000
+    nEvt = 850000
     query_preshower = 'probeScEta<-1.653 or probeScEta>1.653'
     df_train = ((pd.read_hdf(inputtrain).loc[:,kinrho+vars_corr+preshower+weight]).query(query_preshower)).sample(nEvt, random_state=100, replace=True).reset_index(drop=True)
     
@@ -136,6 +134,5 @@ if __name__ == "__main__":
     optArgs = parser.add_argument_group('Optional Arguments')
     optArgs.add_argument('-r','--retrain', action='store', type=str)
     optArgs.add_argument('-s','--split', action='store', type=int)
-    requiredArgs.add_argument('-n','--nEvt', action='store', type=int, required=True)
     options = parser.parse_args()
     main(options)

@@ -29,7 +29,7 @@ def main(options):
     #load dataframe
     nEvt = options.nEvt
 #    nEvt = 1000000
-    df_train = (pd.read_hdf(inputmc)).sample(nEvt, random_state=100).reset_index(drop=True)
+    df_train = (pd.read_hdf(inputmc)).sample(nEvt, random_state=100, replace=True).reset_index(drop=True)
 
     vars_corr_diff = [f'{var}_corr_diff' for var in variables]
     df_target = pd.concat([df_train[f'{var}_corr']-df_train[var] for var in variables], axis=1).rename(columns={i:vars_corr_diff[i] for i in range(len(vars_corr_diff))})

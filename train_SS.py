@@ -55,7 +55,7 @@ def main(options):
     #load dataframe
     nEvt = options.nEvt
 #    nEvt = 1000000
-    df_train = (pd.read_hdf(inputtrain).loc[:,kinrho+variables+weight]).sample(nEvt, random_state=100).reset_index(drop=True)
+    df_train = (pd.read_hdf(inputtrain).loc[:,kinrho+variables+weight]).sample(nEvt, random_state=100, replace=True).reset_index(drop=True)
     
     #transform features and targets
     transformer_file = 'data_{}'.format(EBEE)

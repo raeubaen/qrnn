@@ -17,7 +17,7 @@ def make_dataframe(path, tree, data_key, EBEE, dfDir, dfname, cut=None, split=No
                 'tag_sipip', 'tag_sieip', 'tag_energyRaw',
                 'tag_pfChargedIsoWorstVtx', 'probe_phi', 'probe_sipip',
                 'tag_etaWidth', 'probe_hoe',
-                'probe_pfRelIso03_all_Fall17V2', 'probe_electronVeto']
+                'probe_pfRelIso03_all_Fall17V2', 'probe_electronVeto', 'probe_pfPhoIso03']
 
     variables = ['probe_etaWidth', 'probe_r9', 'probe_s4',
                 'probe_phiWidth', 'probe_sieie',
@@ -32,7 +32,8 @@ def make_dataframe(path, tree, data_key, EBEE, dfDir, dfname, cut=None, split=No
     'tagEtaWidth', 'probe_hoe': 'probeHoE', 'probe_pfRelIso03_all_Fall17V2': 'probeNeutIso', 'probe_electronVeto': 
     'probePassEleVeto', 'probe_etaWidth': 'probeEtaWidth', 'probe_r9': 'probeR9', 'probe_s4': 'probeS4', 'probe_phiWidth': 
     'probePhiWidth', 'probe_sieie': 'probeSigmaIeIe', 'probe_sieip': 'probeCovarianceIeIp', 'probe_pfChargedIsoPFPV': 
-    'probeChIso03', 'probe_pfChargedIsoWorstVtx': 'probeChIso03worst', 'probe_esEnergyOverRawE': 'probeesEnergyOverSCRawEnergy'} 
+    'probeChIso03', 'probe_pfChargedIsoWorstVtx': 'probeChIso03worst', 'probe_esEnergyOverRawE': 'probeesEnergyOverSCRawEnergy',
+    'probePhoIso': 'probe_pfPhoIso03'} 
 
     branches = Branches + variables
 

@@ -26,16 +26,14 @@ def main(options):
     spl = options.split
     if spl in [1, 2]: 
         inputtrain = 'tmp_dfs/weightedsys/df_{}_{}_train_split{}.h5'.format(data_key, EBEE, spl)
-        nEvt = options.nEvt
     else: 
         inputtrain = 'weighted_dfs/df_{}_{}_train.h5'.format(data_key, EBEE)
-        nEvt = options.nEvt
         print(f"Wrong argument '-s' ('--split'), argument must have value 1 or 2. Now using defalt dataframe {inputtrain}")
 #    inputtrain = 'weighted_dfs/df_{}_{}_train.h5'.format(data_key, EBEE)
 #    inputtest = 'weighted_dfs/df_{}_{}_test.h5'.format(data_key, EBEE)
    
     #load dataframe
-#    nEvt = 850000
+    nEvt = 850000
     query_preshower = 'probeScEta<-1.653 or probeScEta>1.653'
     _df = pd.read_hdf(inputtrain)
     print(f"Dataframe {inputtrain} length: {len(_df)}")
@@ -119,6 +117,5 @@ if __name__ == "__main__":
 #    requiredArgs.add_argument('-e','--EBEE', action='store', type=str, required=True)
     optArgs = parser.add_argument_group('Optional Arguments')
     optArgs.add_argument('-s','--split', action='store', type=int)
-    requiredArgs.add_argument('-n','--nEvt', action='store', type=int, required=True)
     options = parser.parse_args()
     main(options)
