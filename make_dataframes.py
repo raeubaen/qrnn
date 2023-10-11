@@ -53,7 +53,7 @@ def make_dataframe(path, tree, data_key, EBEE, dfDir, dfname, cut=None, split=No
 
     df = up_tree.arrays(branches, library='pd')
     print(df.keys())
-    df["mass"] = 2*df.tag_pt*df.probe_pt * (np.cosh(df.tag_eta - df.probe_eta) - np.cos(df.tag_phi - df.probe_phi) )
+    df["mass"] = np.sqrt(2*df.tag_pt*df.probe_pt * ( np.cosh(df.tag_eta - df.probe_eta) - np.cos(df.tag_phi - df.probe_phi) ) )
     df["rho"] = df.mass
 
     print('renaming data frame columns: ', rename_dict)
