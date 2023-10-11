@@ -53,14 +53,7 @@ def make_dataframe(path, tree, data_key, EBEE, dfDir, dfname, cut=None, split=No
 
     df = up_tree.arrays(branches, library='pd')
     print(df.keys())
-    for p in ["tag", "probe"]:
-      df[f"{p}_theta"] = 2*np.arctan(np.exp(-df[f"{p}_eta"]))
-      df[f"{p}_px"] = df[f"{p}_energyRaw"] * np.sin(df[f"{p}_theta"]) * np.cos(df[f"{p}_phi"])
-      df[f"{p}_py"] = df[f"{p}_energyRaw"] * np.sin(df[f"{p}_theta"]) * np.sin(df[f"{p}_phi"])
-      df[f"{p}_pz"] = df[f"{p}_energyRaw"] * np.cos(df[f"{p}_theta"])
-    for v in ["energyRaw", "px", "py", "pz"]:
-      df[f"dilepton_{v}"] = df[f"tag_{v}"] + df[f"probe_{v}"]
-    df["mass"] = get_norm(df, "dilepton")
+    df["mass"] = 2*df.tag_pt*df.probe_pt * (np.cosh(tag_eta - probe_eta) - np.cos(tag_phi - probe_phi) )
     df["rho"] = df.mass
 
     print('renaming data frame columns: ', rename_dict)
