@@ -5,7 +5,8 @@ from joblib import delayed, Parallel
 class IdMvaComputer:
 
    def __init__(self,weightsEB,weightsEE,EBEE,correct=[],tpC='qr',leg2016=False):
-      rt.gROOT.LoadMacro("/work/xchang/try/qrnn/qrnn/mylib/phoIDMVAonthefly.C")
+      rt.gSystem.Load("/cvmfs/sft.cern.ch/lcg/releases/LCG_82/GSL/1.10/x86_64-slc6-gcc48-opt/lib/libgslcblas.so.0")
+      rt.gROOT.LoadMacro("mylib/phoIDMVAonthefly.C")
       
       self.rhoSubtraction = False
       # if type(correct) == dict:
@@ -145,5 +146,3 @@ class IdMvaComputer:
 
 def helpComputeIdMva(weightsEB,weightsEE,EBEE,correct,X,tpC,leg2016):
    return IdMvaComputer(weightsEB,weightsEE,EBEE,correct,tpC,leg2016)(X)
-
-

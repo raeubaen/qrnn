@@ -97,7 +97,7 @@ def main(options):
 
 #    vars_tran = ['probePhoIso','probeChIso03','probeChIso03worst']
     
-    data_key = 'data'
+    data_key = options.data_key
     EBEE = options.EBEE
     ispl = options.split
 
@@ -161,5 +161,6 @@ if __name__ == "__main__":
     requiredArgs = parser.add_argument_group('Required Arguements')
     requiredArgs.add_argument('-e','--EBEE', action='store', type=str, required=True)
     parser.add_argument('-s','--split', action='store', type=int)
+    parser.add_argument('-d','--data_key', action='store', type=str)
     options = parser.parse_args()
     main(options)

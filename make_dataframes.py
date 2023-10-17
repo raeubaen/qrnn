@@ -22,18 +22,18 @@ def make_dataframe(path, tree, data_key, EBEE, dfDir, dfname, cut=None, split=No
     variables = ['probe_etaWidth', 'probe_r9', 'probe_s4',
                 'probe_phiWidth', 'probe_sieie',
                 'probe_sieip', 'probe_pfChargedIsoPFPV',
-                'probe_pfChargedIsoWorstVtx', 'probe_esEnergyOverRawE']
+                'probe_pfChargedIsoWorstVtx', 'probe_esEnergyOverRawE', 'fixedGridRhoAll']
 
-    rename_dict = {'probe_eta': 'probeScEta', 'probe_esEffSigmaRR': 'probeSigmaRR', 'tag_pfChargedIsoPFPV': 'tagChIso03', 'tag_r9': 
+    rename_dict = {'probe_ScEta': 'probeScEta', 'probe_esEffSigmaRR': 'probeSigmaRR', 'tag_pfChargedIsoPFPV': 'tagChIso03', 'tag_r9': 
     'tagR9', 'tag_phiWidth': 'tagPhiWidth', 'probe_pt': 'probePt', 'tag_esEffSigmaRR': 'tagSigmaRR', 'tag_phi': 'tagPhi', 
-    'probe_energyRaw': 'probeScEnergy', 'tag_pfPhoIsoPFPV': 'tagPhoIso', 'tag_eta': 'tagScEta', 'tag_pt': 'tagPt', 'tag_s4': 'tagS4', 
-    'tag_sieie': 'tagSigmaIeIe', 'tag_sipip': 'tagCovarianceIpIp', 'tag_sieip': 'tagCovarianceIeIp', 'tag_energyRaw': 'tagScEnergy', 
-    'tag_pfChargedIsoWorstVtx': 'tagChIso03worst', 'probe_phi': 'probePhi', 'probe_sipip': 'probeCovarianceIpIp', 'tag_etaWidth': 
-    'tagEtaWidth', 'probe_hoe': 'probeHoE', 'probe_pfRelIso03_all_Fall17V2': 'probeNeutIso', 'probe_electronVeto': 
+    'tag_pfPhoIsoPFPV': 'tagPhoIso', 'tag_eta': 'tagScEta', 'tag_pt': 'tagPt', 'tag_s4': 'tagS4', 
+    'tag_sieie': 'tagSigmaIeIe',
+    'tag_pfChargedIsoWorstVtx': 'tagChIso03worst', 'probe_phi': 'probePhi', 'tag_etaWidth': 
+    'tagEtaWidth', 'probe_hoe': 'probeHoE', 'probe_electronVeto': 
     'probePassEleVeto', 'probe_etaWidth': 'probeEtaWidth', 'probe_r9': 'probeR9', 'probe_s4': 'probeS4', 'probe_phiWidth': 
-    'probePhiWidth', 'probe_sieie': 'probeSigmaIeIe', 'probe_sieip': 'probeCovarianceIeIp', 'probe_pfChargedIsoPFPV': 
+    'probePhiWidth', 'probe_sieie': 'probeSigmaIeIe', 'probe_pfChargedIsoPFPV': 
     'probeChIso03', 'probe_pfChargedIsoWorstVtx': 'probeChIso03worst', 'probe_esEnergyOverRawE': 'probeesEnergyOverSCRawEnergy',
-    'probe_pfPhoIso03': 'probePhoIso'} 
+    'probe_pfPhoIso03': 'probePhoIso', 'fixedGridRhoAll': 'rho'} 
 
     branches = Branches + variables
 
@@ -44,7 +44,6 @@ def make_dataframe(path, tree, data_key, EBEE, dfDir, dfname, cut=None, split=No
     phimin = -3.14
     phimax = 3.14
     
-    
     print(f'load root files from {path}, tree name: {tree}')
     root_file = uproot.open(path)
     up_tree = root_file[tree]
@@ -54,7 +53,13 @@ def make_dataframe(path, tree, data_key, EBEE, dfDir, dfname, cut=None, split=No
     df = up_tree.arrays(branches, library='pd')
     print(df.keys())
     df["mass"] = np.sqrt(2*df.tag_pt*df.probe_pt * ( np.cosh(df.tag_eta - df.probe_eta) - np.cos(df.tag_phi - df.probe_phi) ) )
-    df["rho"] = df.mass
+    df["probeScEnergy"] = df.probe_pt/np.sin(2*np.atan(np.exp(-np.abs(df.probe_eta))))
+    df["tagScEnergy"] = df.tag_pt/np.sin(2*np.atan(np.exp(-np.abs(df.tag_eta))))
+    df["probeNeutIso"] = df.probe_pfRelIso03_all_Fall17V2 * df.probe_pt - df.probe_pfChargedIsoPFPV - probe_pfPhoIsoPFPV
+    df["tagNeutIso"] = df.tag_pfRelIso03_all_Fall17V2 * df.tag_pt - df.tag_pfChargedIsoPFPV - tag_pfPhoIsoPFPV
+
+    df['tagCovarianceIpIp'] = df.tag_sipip**2
+    df['tagCovarianceIeIp'] = df.tag_sieip**2
 
     print('renaming data frame columns: ', rename_dict)
     df.rename(columns=rename_dict, inplace=True)

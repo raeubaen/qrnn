@@ -49,13 +49,13 @@ if [ $2 -le 4 ]; then
   done;
 fi
 
-if [ $2 -le 5]; then
+if [ $2 -le 5 ]; then
   for EBEE in "EB" "EE"; 
   do 
       for data_type in "train"; #"test" 
       do
           echo correcting mc for ${EBEE} ${data_type}
-          python3 correct_mc.py -e ${EBEE} -t ${data_type} -v 'Iso' #-f yes -s ${ispl}
+          python3 correct_mc.py -e ${EBEE} -t ${data_type} -v 'Iso' -s ${ispl}
       done
   done;
 fi
@@ -76,17 +76,18 @@ if [ $2 -le 7 ]; then
   done;
 fi
 
-if [ $2 -le 8 ]; then
-  python3 train_final_preshower.py -s ${ispl};
-fi
-
 if [ $2 -le 9 ]; then
   for EBEE in "EB" "EE";
   do
-      python3 correct_mc.py -e ${EBEE} -v "all" -f yes -s ${ispl}
-      python3 correct_final.py -e ${EBEE} -v "all" -s ${ispl} 
-      python3 correct_final_Iso.py -e ${EBEE} -v "all" -s ${ispl} 
+      python3 correct_mc.py -e ${EBEE} -v "all" -f yes -s ${ispl} -t train
   done;
+  python3 train_final_preshower.py -s ${ispl};
+  for EBEE in "EB" "EE";
+  do
+      python3 correct_final.py -e ${EBEE} -v "all" -s ${ispl}
+      python3 correct_final_Iso.py -e ${EBEE} -v "all" -s ${ispl}
+  done;
+
 fi
 
 if [ $2 -le 10 ]; then

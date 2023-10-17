@@ -35,14 +35,14 @@ def main(options):
     else: 
         final = False
     
-    if var_type == 'all': 
+    if spl in [1, 2]:
+        iptdir = 'tmp_dfs/weightedsys'
+        inputmc = f'df_mc_{EBEE}_Iso_{data_type}_split{spl}.h5'
+    elif var_type == 'all': 
 #        iptdir = 'tmp_dfs/all'
 #        inputmc = f'df_mc_{EBEE}_all.h5'
         iptdir = 'dfs_sys/backup'
         inputmc = f'df_mc_{EBEE}_all_corr_final.h5'
-    elif spl in [1, 2]: 
-        iptdir = 'tmp_dfs/weightedsys'
-        inputmc = f'df_mc_{EBEE}_Iso_{data_type}_split{spl}.h5'
     else: 
         iptdir = 'tmp_dfs/weighted0.9'
         inputmc = f'df_mc_{EBEE}_Iso_{data_type}.h5'

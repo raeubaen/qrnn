@@ -39,12 +39,12 @@ def main(options):
     df_train.loc[:,kinrho+variables] = transform(df_train.loc[:,kinrho+variables], transformer_file, kinrho+variables)
 
     trans_file_cd = f'mc_{EBEE}'
-#    try: 
-#        df_target = transform(df_target, trans_file_cd, vars_corr_diff)
-#    except FileNotFoundError: 
-#        fit_standard_scaler(df_target, vars_corr_diff, trans_file_cd)
-#        df_target = transform(df_target, trans_file_cd, vars_corr_diff)
-    df_target = transform(df_target, trans_file_cd, vars_corr_diff)
+    try: 
+        df_target = transform(df_target, trans_file_cd, vars_corr_diff)
+    except FileNotFoundError: 
+        fit_standard_scaler(df_target, vars_corr_diff, trans_file_cd)
+        df_target = transform(df_target, trans_file_cd, vars_corr_diff)
+    #df_target = transform(df_target, trans_file_cd, vars_corr_diff)
  
 
 
