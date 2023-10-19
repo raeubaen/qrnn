@@ -25,6 +25,7 @@ def parallelize(func, X, Y, *args, n_jobs=10, **kwargs):
         Y = np.array(Y).reshape(-1,1)
     nY = Y.shape[-1]
     Z = np.hstack([X,Y])
+    print(f"shape: {Z.shape}")
     if nY > 1: 
         return np.concatenate(Parallel(n_jobs=n_jobs, verbose=20)(delayed(func)(sli[:,:-nY], sli[:,-nY:], *args, **kwargs) for sli in np.array_split(Z, n_jobs)))
     else: 

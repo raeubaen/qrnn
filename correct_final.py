@@ -22,7 +22,7 @@ def main(options):
     if spl in [1, 2]: 
         if var_type == 'all': 
             iptdir = f'dfs_sys/split{spl}'
-            inputmc = f'df_mc_{EBEE}_all_corr.h5'
+            inputmc = f'df_mc_{EBEE}_train_split{spl}_corr.h5'
         else:
             iptdir = f'dfs_sys/split{spl}'
             inputmc = f'df_mc_{EBEE}_{data_type}_split{spl}_corr.h5'
@@ -62,14 +62,14 @@ def main(options):
     trans_file_corr_diff = f'mc_{EBEE}'
 
     features = kinrho + variables
-    target_name = [f'{var}_corr_diff' for var in variables]
+    target_name = [f'{var}' for var in variables]
     df_diff = predict(df_mc.loc[:, features], model_file, trans_file_corr_diff, target_name) 
     print(df_diff)
 
     df_mc.loc[:,kinrho+variables] = inverse_transform(df_mc.loc[:,kinrho+variables], transformer_file, kinrho+variables)
 
     for var in variables: 
-        df_mc[f'{var}_corr_final'] = df_mc[var] + df_diff[f'{var}_corr_diff']
+        df_mc[f'{var}_corr_final'] = df_mc[var] + df_diff[f'{var}']
     print(df_mc.keys())
     print(df_mc)
 

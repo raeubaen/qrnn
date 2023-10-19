@@ -9,15 +9,15 @@ def get_norm(df, part):
 
 def make_dataframe(path, tree, data_key, EBEE, dfDir, dfname, cut=None, split=None, sys=False):
 
-    Branches = ['probe_eta', 'probe_esEffSigmaRR', 'tag_pfChargedIsoPFPV',
+    Branches = ['probe_ScEta', 'probe_esEffSigmaRR', 'tag_pfChargedIsoPFPV',
                 'tag_r9', 'tag_phiWidth', 'probe_pt', 'tag_esEffSigmaRR',
                 'tag_phi', 'probe_energyRaw',
-                'tag_pfPhoIso03', 'tag_eta',
+                'tag_pfPhoIso03', 'tag_ScEta',
                 'tag_pt', 'tag_s4', 'tag_sieie',
                 'tag_sipip', 'tag_sieip', 'tag_energyRaw',
                 'tag_pfChargedIsoWorstVtx', 'probe_phi', 'probe_sipip',
                 'tag_etaWidth', 'probe_hoe',
-                'probe_pfRelIso03_all_Fall17V2', 'probe_electronVeto', 'probe_pfPhoIso03']
+                'probe_pfRelIso03_all_Fall17V2', 'probe_electronVeto', 'probe_pfPhoIso03', 'tag_pfRelIso03_all_Fall17V2']
 
     variables = ['probe_etaWidth', 'probe_r9', 'probe_s4',
                 'probe_phiWidth', 'probe_sieie',
@@ -26,7 +26,7 @@ def make_dataframe(path, tree, data_key, EBEE, dfDir, dfname, cut=None, split=No
 
     rename_dict = {'probe_ScEta': 'probeScEta', 'probe_esEffSigmaRR': 'probeSigmaRR', 'tag_pfChargedIsoPFPV': 'tagChIso03', 'tag_r9': 
     'tagR9', 'tag_phiWidth': 'tagPhiWidth', 'probe_pt': 'probePt', 'tag_esEffSigmaRR': 'tagSigmaRR', 'tag_phi': 'tagPhi', 
-    'tag_pfPhoIsoPFPV': 'tagPhoIso', 'tag_eta': 'tagScEta', 'tag_pt': 'tagPt', 'tag_s4': 'tagS4', 
+    'tag_pfPhoIsoPFPV': 'tagPhoIso', 'tag_ScEta': 'tagScEta', 'tag_pt': 'tagPt', 'tag_s4': 'tagS4', 
     'tag_sieie': 'tagSigmaIeIe',
     'tag_pfChargedIsoWorstVtx': 'tagChIso03worst', 'probe_phi': 'probePhi', 'tag_etaWidth': 
     'tagEtaWidth', 'probe_hoe': 'probeHoE', 'probe_electronVeto': 
@@ -52,14 +52,16 @@ def make_dataframe(path, tree, data_key, EBEE, dfDir, dfname, cut=None, split=No
 
     df = up_tree.arrays(branches, library='pd')
     print(df.keys())
-    df["mass"] = np.sqrt(2*df.tag_pt*df.probe_pt * ( np.cosh(df.tag_eta - df.probe_eta) - np.cos(df.tag_phi - df.probe_phi) ) )
-    df["probeScEnergy"] = df.probe_pt/np.sin(2*np.atan(np.exp(-np.abs(df.probe_eta))))
-    df["tagScEnergy"] = df.tag_pt/np.sin(2*np.atan(np.exp(-np.abs(df.tag_eta))))
-    df["probeNeutIso"] = df.probe_pfRelIso03_all_Fall17V2 * df.probe_pt - df.probe_pfChargedIsoPFPV - probe_pfPhoIsoPFPV
-    df["tagNeutIso"] = df.tag_pfRelIso03_all_Fall17V2 * df.tag_pt - df.tag_pfChargedIsoPFPV - tag_pfPhoIsoPFPV
+    df["mass"] = np.sqrt(2*df.tag_pt*df.probe_pt * ( np.cosh(df.tag_ScEta - df.probe_ScEta) - np.cos(df.tag_phi - df.probe_phi) ) )
+    df["probeScEnergy"] = df.probe_pt/np.sin(2*np.arctan(np.exp(-np.abs(df.probe_ScEta))))
+    df["tagScEnergy"] = df.tag_pt/np.sin(2*np.arctan(np.exp(-np.abs(df.tag_ScEta))))
+    df["probeNeutIso"] = df.probe_pfRelIso03_all_Fall17V2 * df.probe_pt - df.probe_pfChargedIsoPFPV - df.probe_pfPhoIso03
+    df["tagNeutIso"] = df.tag_pfRelIso03_all_Fall17V2 * df.tag_pt - df.tag_pfChargedIsoPFPV - df.tag_pfPhoIso03
 
     df['tagCovarianceIpIp'] = df.tag_sipip**2
     df['tagCovarianceIeIp'] = df.tag_sieip**2
+    df['probeCovarianceIpIp'] = df.probe_sipip**2
+    df['probeCovarianceIeIp'] = df.probe_sieip**2
 
     print('renaming data frame columns: ', rename_dict)
     df.rename(columns=rename_dict, inplace=True)

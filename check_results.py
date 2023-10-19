@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import matplotlib
 matplotlib.use('cairo')
-matplotlib.rcParams['text.usetex'] = True
+matplotlib.rcParams['text.usetex'] = False
 matplotlib.rcParams['font.family'] = 'Helvetica'
 from matplotlib import pyplot as plt
 from matplotlib.gridspec import GridSpec
@@ -68,7 +68,9 @@ def draw_mean_plot(EBEE, df_data, df_mc, x_vars, x_title, x_var_name, target, pl
     for i in range(len(x_vars)-1):
         query_str = x_var_name + ' > ' + str(x_vars[i]) + ' and ' + x_var_name +' < ' + str(x_vars[i+1])
         df_mc_queried = df_mc.query(query_str)
-
+        print(f"all: {df_mc}")
+        print(f"queried: {df_mc_queried}")
+        
         if final:
             var_corr_final_mean[i] = np.average(df_mc_queried['{}_corr_final'.format(target)], weights=df_mc_queried['weight_clf']) 
         var_corr_mean[i] = np.average(df_mc_queried['{}_corr'.format(target)], weights=df_mc_queried['weight_clf']) 
@@ -205,6 +207,8 @@ def draw_dist_plot(EBEE, df_data, df_mc, qs, x_vars, x_title, x_var_name, target
 
 def draw_hist(df_data, df_mc, target, fig_name, bins=None, histrange=None, density=False, mc_weights=None, logplot=False, showshift=False, final=False, sysuncer=False):
 
+    showshift = False
+
     if 'EB' in fig_name: 
         EBEE = 'EB'
         etastr = r'$|\eta|<1.4442$'
@@ -258,7 +262,7 @@ def draw_hist(df_data, df_mc, target, fig_name, bins=None, histrange=None, densi
     
     xticks = np.linspace(histrange[0],histrange[1],11)
     ax1.set_xlim(histrange)
-    ax1.set_xticks(xticks, labels=[])
+    ax1.set_xticks(xticks)
     ax1.tick_params(labelsize='large')
     lg = ax1.legend(title=r'$Z \to e^{+}e^{-}$'+'\n'+'Tag and Probe'+'\n'+etastr, frameon=False)
     plt.setp(lg.get_title(), multialignment='center')
@@ -368,12 +372,12 @@ def main(options):
 #    df_mc = (pd.read_hdf('dfs_corr/df_mc_{}_test_corr_final.h5'.format(EBEE))).sample(nEvt, random_state=100).reset_index(drop=True)
 #    df_mc = (pd.read_hdf('dfs_corr/df_mc_{}_test_corr_final_uncer.h5'.format(EBEE))).sample(nEvt, random_state=100).reset_index(drop=True)
 
-    df_data = (pd.read_hdf('tmp_dfs/all/df_data_{}_all.h5'.format(EBEE))).sample(nEvt, random_state=100).reset_index(drop=True)
+    df_data = (pd.read_hdf('tmp_dfs/sys/df_data_{}_train_split1.h5'.format(EBEE))).sample(nEvt, random_state=100, replace=True).reset_index(drop=True)
 #    df_mc = (pd.read_hdf('dfs_corr/df_mc_{}_all_corr.h5'.format(EBEE))).sample(nEvt, random_state=100).reset_index(drop=True)
 #    df_mc = (pd.read_hdf('dfs_corr/df_mc_{}_all_corr_final.h5'.format(EBEE))).sample(nEvt, random_state=100).reset_index(drop=True)
 #    df_mc = (pd.read_hdf('dfs_sys/df_mc_{}_all_corr_final.h5'.format(EBEE))).sample(nEvt, random_state=100).reset_index(drop=True)
-    df_mc = (pd.read_hdf('dfs_sys/df_mc_{}_all_corr_final.h5'.format(EBEE))).sample(nEvt, random_state=100).reset_index(drop=True)
-#    df_mc = (pd.read_hdf('dfs_sys/split1/df_mc_{}_all_corr_final.h5'.format(EBEE))).sample(nEvt, random_state=100).reset_index(drop=True)
+    #df_mc = (pd.read_hdf('dfs_sys/df_mc_{}_all_corr_final.h5'.format(EBEE))).sample(nEvt, random_state=100).reset_index(drop=True)
+    df_mc = (pd.read_hdf('dfs_sys/split1/df_mc_{}_Iso_train_split1_corr_final.h5'.format(EBEE))).sample(nEvt, random_state=100, replace=True).reset_index(drop=True)
 #    df_mc = (pd.read_hdf('dfs_sys/split2/df_mc_{}_all_corr_final.h5'.format(EBEE))).sample(nEvt, random_state=100).reset_index(drop=True)
 
 

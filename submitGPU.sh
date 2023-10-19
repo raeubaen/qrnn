@@ -8,10 +8,15 @@ begin=$(date +%s)
 
 ispl=$1
 
+if [ $2 -le 1 ]; then
+  source script_weightuniform.sh
+  source script_transform.sh
+fi
+
 EBEE=(EB EE)
 nEvt=(10000 10000)
 #nEvt=(3200000 970000) # for syst. uncertainty
-if [ $2 -le 1 ]; then
+if [ $2 -le 2 ]; then
   for i in ${!EBEE[@]}; 
   do
       python3 train_SS.py -e ${EBEE[i]} -n ${nEvt[i]} -s ${ispl}
@@ -19,7 +24,7 @@ if [ $2 -le 1 ]; then
   done;
 fi
 
-if [ $2 -le 2 ]; then
+if [ $2 -le 3 ]; then
   for EBEE in "EB" "EE"; 
   do 
       for data_type in "train"; #"test" 
@@ -28,11 +33,6 @@ if [ $2 -le 2 ]; then
           python3 correct_mc.py -e ${EBEE} -t ${data_type} -v 'SS' -s ${ispl}
       done
   done;
-fi
-
-if [ $2 -le 3 ]; then
-  python3 train_preshower.py -s ${ispl}
-  python3 train_preshower_mc.py -r yes -s ${ispl};
 fi
 
 
@@ -81,16 +81,27 @@ if [ $2 -le 9 ]; then
   do
       python3 correct_mc.py -e ${EBEE} -v "all" -f yes -s ${ispl} -t train
   done;
-  python3 train_final_preshower.py -s ${ispl};
-  for EBEE in "EB" "EE";
-  do
-      python3 correct_final.py -e ${EBEE} -v "all" -s ${ispl}
-      python3 correct_final_Iso.py -e ${EBEE} -v "all" -s ${ispl}
-  done;
 
 fi
 
 if [ $2 -le 10 ]; then
+  for EBEE in "EB" "EE";
+  do
+      python3 correct_final.py -e ${EBEE} -v "all" -s ${ispl} -t train
+  done;
+
+fi
+
+if [ $2 -le 11 ]; then
+  for EBEE in "EB" "EE";
+  do
+      python3 correct_final_Iso.py -e ${EBEE} -v "Iso" -s ${ispl} -t train
+  done;
+
+fi
+
+
+if [ $2 -le 12 ]; then
   EBEE=(EB EE)
   nEvtA=(7000000 2000000)
   for i in ${!EBEE[@]};

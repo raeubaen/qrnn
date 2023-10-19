@@ -11,7 +11,6 @@ def main(options):
     variables = ['probeCovarianceIeIp','probeS4','probeR9','probePhiWidth','probeSigmaIeIe','probeEtaWidth']
     isoVarsPh = ['probePhoIso']
     isoVarsCh = ['probeChIso03','probeChIso03worst']
-    preshower = ['probeesEnergyOverSCRawEnergy']
     kinrho = ['probePt','probeScEta','probePhi','rho'] 
     
     EBEE = options.EBEE
@@ -21,9 +20,9 @@ def main(options):
     
     if spl in [1, 2]: 
         if var_type == 'all': 
-#            iptdir = f'dfs_sys/split{spl}'
-            iptdir = f'dfs_sys'
-            inputmc = f'df_mc_{EBEE}_all_corr_final.h5'
+            iptdir = f'dfs_sys/split{spl}'
+            #iptdir = f'dfs_sys'
+            inputmc = f'df_mc_{EBEE}_train_split{spl}_corr.h5'
         else:
             iptdir = f'dfs_sys/split{spl}'
             inputmc = f'df_mc_{EBEE}_Iso_{data_type}_split{spl}_corr.h5'
@@ -72,26 +71,10 @@ def main(options):
     
         model_file = '{}/mc_{}_{}_final'.format(modeldir, EBEE, target)
     
-        target_name = f'{target}_corr_diff'
+        target_name = f'{target}'
         df_mc.loc[df_mc[f'{target}_shift']==0, f'{target}_corr_final'] = 0. 
         df_mc.loc[df_mc[f'{target}_shift']!=0, f'{target}_corr_final'] = (df_mc.loc[df_mc[f'{target}_shift']!=0, f'{target}_shift'] 
             + predict(df_mc.loc[df_mc[f'{target}_shift']!=0, features], model_file, trans_file_corr_diff, target_name))
-
-
-    if EBEE == 'EE':
-        df_mc.loc[:,variables] = transform(df_mc.loc[:,variables], transformer_file, variables)
-
-        df_mc.loc[np.abs(df_mc['probeScEta_orignal'])<=1.653, '{}_corr_final'.format(preshower[0])] = 0.
-        df_mc.loc[np.abs(df_mc['probeScEta_orignal'])>1.653, '{}_corr_final'.format(preshower[0])] = (
-            df_mc.loc[np.abs(df_mc['probeScEta_orignal'])>1.653, preshower[0]]
-            + predict(
-                df_mc.loc[np.abs(df_mc['probeScEta_orignal'])>1.653, kinrho+variables+preshower], 
-                '{}/mc_{}_{}_final'.format(modeldir, EBEE, preshower[0]), 
-                f'mc_{EBEE}', 
-                '{}_corr_diff'.format(preshower[0]), 
-                )
-            )
-        df_mc.loc[:,variables] = inverse_transform(df_mc.loc[:,variables], transformer_file, variables)
 
 
     df_mc.loc[:,kinrho] = inverse_transform(df_mc.loc[:,kinrho], transformer_file, kinrho)

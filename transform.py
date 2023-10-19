@@ -93,9 +93,7 @@ def main(options):
     kinrho = ['probePt','probeScEta','probePhi','rho']
     weight = ['ml_weight']
 #    
-    vars_tran = kinrho + variables + preshower
-
-#    vars_tran = ['probePhoIso','probeChIso03','probeChIso03worst']
+    vars_tran = kinrho + variables + preshower + ['probePhoIso','probeChIso03','probeChIso03worst']
     
     data_key = options.data_key
     EBEE = options.EBEE
