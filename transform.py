@@ -104,6 +104,7 @@ def main(options):
     
     #load dataframe
     nEvnt = 850000
+    print(f"about to read {inputtrain}")
     df_train = (pd.read_hdf(inputtrain).loc[:,vars_tran+weight]).sample(nEvnt, random_state=100, replace=True).reset_index(drop=True)
     df_test  = (pd.read_hdf(inputtest).loc[:,vars_tran+weight]).sample(nEvnt, random_state=100, replace=True).reset_index(drop=True)
     print(df_train)

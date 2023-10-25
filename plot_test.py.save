@@ -1,0 +1,19 @@
+import pandas as pd
+from matplotlib import pyplot as plt
+import os
+
+folders = ["tmp_dfs/sys", "tmp_dfs/weightedsys", "dfs_sys/split1"]
+
+filegen = "df_{}_{}_{}train_split1{}.h5"
+
+for folder in folders:
+  os.mkdir(f"/eos/user/r/rgargiul/www/qrnn_plots/{folder.replace('/', '_'}")
+  for t in ["mc", "data"]:
+    for v in ["Iso_", ""]:
+      for ebee in ["EE", "EB"]:
+        file = filegen.format(t,  ebee, v)
+        df = pd.read_hdf(filegen)
+        for key in df.columns:
+          plt.hist(df[key])
+          plt.savefig(file)
+      

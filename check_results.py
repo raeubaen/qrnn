@@ -377,7 +377,7 @@ def main(options):
 #    df_mc = (pd.read_hdf('dfs_corr/df_mc_{}_all_corr_final.h5'.format(EBEE))).sample(nEvt, random_state=100).reset_index(drop=True)
 #    df_mc = (pd.read_hdf('dfs_sys/df_mc_{}_all_corr_final.h5'.format(EBEE))).sample(nEvt, random_state=100).reset_index(drop=True)
     #df_mc = (pd.read_hdf('dfs_sys/df_mc_{}_all_corr_final.h5'.format(EBEE))).sample(nEvt, random_state=100).reset_index(drop=True)
-    df_mc = (pd.read_hdf('dfs_sys/split1/df_mc_{}_Iso_train_split1_corr_final.h5'.format(EBEE))).sample(nEvt, random_state=100, replace=True).reset_index(drop=True)
+    df_mc = (pd.read_hdf('dfs_sys/split1/df_mc_{}_train_split1_corr_final.h5'.format(EBEE))).sample(nEvt, random_state=100, replace=True).reset_index(drop=True)
 #    df_mc = (pd.read_hdf('dfs_sys/split2/df_mc_{}_all_corr_final.h5'.format(EBEE))).sample(nEvt, random_state=100).reset_index(drop=True)
 
 
@@ -483,7 +483,7 @@ def main(options):
     xnames  = ['probePt', 'probeScEta', 'rho',     'probePhi']
     qs = np.array([0.025, 0.16, 0.5, 0.84, 0.975])
 
-    for target in isoVars: #variables+preshower+isoVars 
+    for target in variables: #+preshower: #+isoVars:
 
         if EBEE == 'EB' and target in preshower: 
             continue
