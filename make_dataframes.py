@@ -108,12 +108,12 @@ def main(options):
     tree = {'data': options.tree_name,
               'mc': options.tree_name}
 
-    cut = 'tagPt>25 and tagR9>0.8 and mass>65 and mass<120 and probeChIso03<6 and tagScEta>-2.1 and tagScEta<2.1 and probePassEleVeto==0'
+    cut = 'tagPt>25 and tagR9>0.8 and mass>60 and mass<120 and probeChIso03<6 and tagScEta>-2.1 and tagScEta<2.1 and probePassEleVeto==0'
 
-    cutIso = {'EB': 'tagPt>25 and tagR9>0.8 and mass>65 and mass<120 and probeSigmaIeIe<0.0105 and tagScEta>-2.1 and tagScEta<2.1 and probePassEleVeto==0',
-              'EE': 'tagPt>25 and tagR9>0.8 and mass>65 and mass<120 and probeSigmaIeIe<0.028 and tagScEta>-2.1 and tagScEta<2.1 and probePassEleVeto==0'}
+    cutIso = {'EB': 'tagPt>25 and tagR9>0.8 and mass>60 and mass<120 and probeSigmaIeIe<0.0105 and tagScEta>-2.1 and tagScEta<2.1 and probePassEleVeto==0',
+              'EE': 'tagPt>25 and tagR9>0.8 and mass>60 and mass<120 and probeSigmaIeIe<0.028 and tagScEta>-2.1 and tagScEta<2.1 and probePassEleVeto==0'}
 
-    # cutplots = 'tagPt>25 and probePt>20 and mass>65 and mass<120 and probePassEleVeto==0 and tagScEta<2.5 and tagScEta>-2.5' 
+    # cutplots = 'tagPt>25 and probePt>20 and mass>60 and mass<120 and probePassEleVeto==0 and tagScEta<2.5 and tagScEta>-2.5' 
     
     data_key = options.data_key
     EBEE = options.EBEE 
