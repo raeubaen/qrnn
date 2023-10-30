@@ -37,7 +37,6 @@ def Hubber(e, delta=0.1, signed=False):
 
 def main(options):
     variables = ['probeCovarianceIeIp','probeS4','probeR9','probePhiWidth','probeSigmaIeIe','probeEtaWidth']
-#    variables = ['probePhiWidth','probeEtaWidth','probeSigmaIeIe','probeS4','probeR9','probeCovarianceIeIp']
     kinrho = ['probePt','probeScEta','probePhi','rho'] 
     weight = ['ml_weight']
 
@@ -55,7 +54,7 @@ def main(options):
     #load dataframe
     nEvt = options.nEvt
 #    nEvt = 1000000
-    df_train = (pd.read_hdf(inputtrain).loc[:,kinrho+variables+weight]).sample(nEvt, random_state=100, replace=True).reset_index(drop=True)
+    df_train = (pd.read_hdf(inputtrain).loc[:,kinrho+variables+weight]).sample(nEvt, random_state=100).reset_index(drop=True)
     
     #transform features and targets
     transformer_file = 'data_{}'.format(EBEE)
