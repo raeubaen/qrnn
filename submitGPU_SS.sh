@@ -14,7 +14,6 @@ if [ $2 -le 1 ]; then
 fi
 
 EBEE=(EB EE)
-nEvt=(1950000 0)
 if [ $2 -le 2 ]; then
   for i in ${!EBEE[@]}; 
   do
