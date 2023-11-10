@@ -19,7 +19,7 @@ filegen = "df_{}_{}_train_split1{}.h5"
 variables = ['probeCovarianceIeIp','probeS4','probeR9','probePhiWidth','probeSigmaIeIe','probeEtaWidth']
 
 eos_path = "../eos/"
-plot_folder = f"{eos_path}/www/qrnn_plots/comparison_try2"
+plot_folder = f"{eos_path}/www/qrnn_plots/comparison_try4"
 os.system(f"mkdir -p {plot_folder}")
 os.system(f"cp {eos_path}/www/index.php {plot_folder}")
 

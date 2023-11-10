@@ -1,6 +1,9 @@
 import os
 import numpy as np
 import pandas as pd
+
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1' 
+
 from keras import backend as K
 from keras.layers import Input, Dense, GaussianNoise, Dropout, concatenate
 from keras.models import Model, load_model
@@ -69,8 +72,8 @@ def trainQuantile(X, Y, qs, qweights=None, num_hidden_layers=3, num_units=None, 
         batch_size = batch_size, 
         validation_split = 0.1,
         callbacks = [
-            EarlyStopping(monitor='val_loss', patience=15, verbose=1),
-            ReduceLROnPlateau(monitor='val_loss', factor=0.1, patience=6, verbose=1), 
+            EarlyStopping(monitor='val_loss', patience=5, verbose=1),
+            ReduceLROnPlateau(monitor='val_loss', factor=0.5, patience=6, verbose=1), 
 #            ModelCheckpoint(filepath=checkpoint_dir + "/ckpt-{epoch}", save_freq="epoch"),
             TerminateOnNaN()
             ], 
@@ -118,7 +121,7 @@ def scale(df, scale_file):
     return df_scaled
 
 
-def get_compiled_model(qs, qweights, input_dim, num_hidden_layers, num_units, act, num_connected_layers=1, l2lam=1.e-3, opt='SGD', lr=0.1, op_act=None, dp_on=False, dp=None, gauss_std=None):
+def get_compiled_model(qs, qweights, input_dim=1, num_hidden_layers=1, num_units=[1], act=["relu"], num_connected_layers=1, l2lam=1.e-3, opt='SGD', lr=0.1, op_act=None, dp_on=False, dp=None, gauss_std=None):
 
     nq = len(qs)
     

@@ -68,8 +68,6 @@ def draw_mean_plot(EBEE, df_data, df_mc, x_vars, x_title, x_var_name, target, pl
     for i in range(len(x_vars)-1):
         query_str = x_var_name + ' > ' + str(x_vars[i]) + ' and ' + x_var_name +' < ' + str(x_vars[i+1])
         df_mc_queried = df_mc.query(query_str)
-        print(f"all: {df_mc}")
-        print(f"queried: {df_mc_queried}")
         
         if final:
             var_corr_final_mean[i] = np.average(df_mc_queried['{}_corr_final'.format(target)], weights=df_mc_queried['weight_clf']) 
@@ -97,7 +95,7 @@ def draw_mean_plot(EBEE, df_data, df_mc, x_vars, x_title, x_var_name, target, pl
         plt.plot(x_vars_c, var_corr_final_mean, color='cyan', label='MC corrected final')
 
 #    plt.title(r'\textbf{CMS}', loc='left', fontsize='x-large')
-    plt.title(r'63.67 fb$^{-1}$ (13 TeV)', loc='right', fontsize='x-large')
+    plt.title(r'20.665 fb$^{-1}$ (13.6 TeV)', loc='right', fontsize='x-large')
     plt.xlabel(x_title, fontsize='x-large')
     plt.ylabel('mean of '+ varNameMap[target], fontsize='x-large')
     plt.legend(fontsize='large')
@@ -193,7 +191,7 @@ def draw_dist_plot(EBEE, df_data, df_mc, qs, x_vars, x_title, x_var_name, target
         plt.legend(fontsize='large')
 
 #    plt.title(r'\textbf{CMS}', loc='left', fontsize='x-large')
-    plt.title(r'63.67 fb$^{-1}$ (13 TeV)', loc='right', fontsize='x-large')
+    plt.title(r'20.665 fb$^{-1}$ (13.6 TeV)', loc='right', fontsize='x-large')
     plt.xlabel(x_title, fontsize='x-large')
     plt.ylabel(varNameMap[target], fontsize='x-large')
     plt.ticklabel_format(style='sci', scilimits=(-2, 3), axis='both', useMathText=True)
@@ -244,7 +242,7 @@ def draw_hist(df_data, df_mc, target, fig_name, bins=None, histrange=None, densi
     if showshift:
         mc_shift_n, _, _ = ax1.hist(df_mc['{}_shift'.format(target)], range=histrange, bins=bins, density=density, weights=mc_weights, histtype='step', color='green', label='MC shifted')
 
-    mc_corr_n, _, _ = ax1.hist(df_mc['{}_corr'.format(target)], range=histrange, bins=bins, density=density, weights=mc_weights, histtype='step', color='blue', label='MC corrected')
+    if not options.nocorr: mc_corr_n, _, _ = ax1.hist(df_mc['{}_corr'.format(target)], range=histrange, bins=bins, density=density, weights=mc_weights, histtype='step', color='blue', label='MC corrected')
 
     if final: 
         mc_final_n, _, _ = ax1.hist(df_mc['{}_corr_final'.format(target)], range=histrange, bins=bins, density=density, weights=mc_weights, histtype='step', color='cyan', label='MC corrected final')
@@ -267,7 +265,7 @@ def draw_hist(df_data, df_mc, target, fig_name, bins=None, histrange=None, densi
     lg = ax1.legend(title=r'$Z \to e^{+}e^{-}$'+'\n'+'Tag and Probe'+'\n'+etastr, frameon=False)
     plt.setp(lg.get_title(), multialignment='center')
 #    ax1.set_title(r'\textbf{CMS}', loc='left', fontsize='x-large')
-    ax1.set_title(r'63.67 fb$^{-1}$ (13 TeV)', loc='right', fontsize='x-large') # fontsize=16, fontname="Times New Roman"
+    ax1.set_title(r'20.665 fb$^{-1}$ (13.6 TeV)', loc='right', fontsize='x-large') # fontsize=16, fontname="Times New Roman"
 
     binwidth = mathSciNot((histrange[1]-histrange[0])/bins)
     ax1.set_ylabel(f'Events / {binwidth}', fontsize='x-large')
@@ -279,11 +277,11 @@ def draw_hist(df_data, df_mc, target, fig_name, bins=None, histrange=None, densi
         ax1.get_yaxis().get_offset_text().set_position((0., 1.))
 
     mc_uncorr_n = np.where(mc_uncorr_n==0, 1.e-5, mc_uncorr_n)
-    mc_corr_n = np.where(mc_corr_n==0, 1.e-5, mc_corr_n)
+    if not options.nocorr: mc_corr_n = np.where(mc_corr_n==0, 1.e-5, mc_corr_n)
     ratio_uncorr = data_n / mc_uncorr_n
     ratio_uncorr_err = np.sqrt(data_n + (data_n**2/mc_uncorr_n)) / mc_uncorr_n
-    ratio_corr = data_n / mc_corr_n
-    ratio_corr_err = np.sqrt(data_n + (data_n**2/mc_corr_n)) / mc_corr_n
+    if not options.nocorr: ratio_corr = data_n / mc_corr_n
+    if not options.nocorr: ratio_corr_err = np.sqrt(data_n + (data_n**2/mc_corr_n)) / mc_corr_n
 
     ax2.plot(x, np.ones_like(x), 'k-.')
     ax2.errorbar(x, ratio_uncorr, ratio_uncorr_err, xerr, fmt='.', elinewidth=1., capsize=1., color='red')
@@ -294,7 +292,7 @@ def draw_hist(df_data, df_mc, target, fig_name, bins=None, histrange=None, densi
         ratio_shift_err = np.sqrt(data_n + (data_n**2/mc_shift_n)) / mc_shift_n
         ax2.errorbar(x, ratio_shift, ratio_shift_err, xerr, fmt='.', elinewidth=1., capsize=1., color='green')
 
-    ax2.errorbar(x, ratio_corr, ratio_corr_err, xerr, fmt='.', elinewidth=1., capsize=1., color='blue')
+    #ax2.errorbar(x, ratio_corr, ratio_corr_err, xerr, fmt='.', elinewidth=1., capsize=1., color='blue')
 
     if final:
         mc_final_n = np.where(mc_final_n==0, 1.e-5, mc_final_n)
@@ -355,30 +353,29 @@ def main(options):
     variables = ['probeCovarianceIeIp','probeS4','probeR9','probePhiWidth','probeSigmaIeIe','probeEtaWidth']
     isoVarsPh = ['probePhoIso']
     isoVarsCh = ['probeChIso03','probeChIso03worst']
-    preshower = ['probeesEnergyOverSCRawEnergy']
+    preshower = [] #['probeesEnergyOverSCRawEnergy']
     kinrho = ['probePt','probeScEta','probePhi','rho'] 
     
     EBEE = options.EBEE
 #    nEvt = 3500000
-    nEvt = options.nEvt
 
-#    df_data = (pd.read_hdf('tmp_dfs/split0.9/df_data_{}_Iso_test.h5'.format(EBEE))).sample(nEvt, random_state=100).reset_index(drop=True)
-#    df_data = (pd.read_hdf('dataframes/df_data_{}_Iso_test.h5'.format(EBEE))).sample(nEvt, random_state=100).reset_index(drop=True)
-#    df_mc = (pd.read_hdf('dfs_corr/df_mc_{}_Iso_test_corr.h5'.format(EBEE))).sample(nEvt, random_state=100).reset_index(drop=True)
-#    df_mc = (pd.read_hdf('dfs_corr/df_mc_{}_Iso_test_corr_final.h5'.format(EBEE))).sample(nEvt, random_state=100).reset_index(drop=True)
+#    df_data = (pd.read_hdf('tmp_dfs/split0.9/df_data_{}_Iso_test.h5'.format(EBEE))).sample(frac=1).reset_index(drop=True)
+#    df_data = (pd.read_hdf('dataframes/df_data_{}_Iso_test.h5'.format(EBEE))).sample(frac=1).reset_index(drop=True)
+#    df_mc = (pd.read_hdf('dfs_corr/df_mc_{}_Iso_test_corr.h5'.format(EBEE))).sample(frac=1).reset_index(drop=True)
+#    df_mc = (pd.read_hdf('dfs_corr/df_mc_{}_Iso_test_corr_final.h5'.format(EBEE))).sample(frac=1).reset_index(drop=True)
      
-#    df_data = (pd.read_hdf('dataframes/df_data_{}_test.h5'.format(EBEE))).sample(nEvt, random_state=100).reset_index(drop=True)
-#    df_mc = (pd.read_hdf('dfs_corr/df_mc_{}_test_corr.h5'.format(EBEE))).sample(nEvt, random_state=100).reset_index(drop=True)
-#    df_mc = (pd.read_hdf('dfs_corr/df_mc_{}_test_corr_final.h5'.format(EBEE))).sample(nEvt, random_state=100).reset_index(drop=True)
-#    df_mc = (pd.read_hdf('dfs_corr/df_mc_{}_test_corr_final_uncer.h5'.format(EBEE))).sample(nEvt, random_state=100).reset_index(drop=True)
+#    df_data = (pd.read_hdf('dataframes/df_data_{}_test.h5'.format(EBEE))).sample(frac=1).reset_index(drop=True)
+#    df_mc = (pd.read_hdf('dfs_corr/df_mc_{}_test_corr.h5'.format(EBEE))).sample(frac=1).reset_index(drop=True)
+#    df_mc = (pd.read_hdf('dfs_corr/df_mc_{}_test_corr_final.h5'.format(EBEE))).sample(frac=1).reset_index(drop=True)
+#    df_mc = (pd.read_hdf('dfs_corr/df_mc_{}_test_corr_final_uncer.h5'.format(EBEE))).sample(frac=1).reset_index(drop=True)
 
-    df_data = (pd.read_hdf('tmp_dfs/sys/df_data_{}_train_split1.h5'.format(EBEE))).sample(nEvt, random_state=100, replace=True).reset_index(drop=True)
-#    df_mc = (pd.read_hdf('dfs_corr/df_mc_{}_all_corr.h5'.format(EBEE))).sample(nEvt, random_state=100).reset_index(drop=True)
-#    df_mc = (pd.read_hdf('dfs_corr/df_mc_{}_all_corr_final.h5'.format(EBEE))).sample(nEvt, random_state=100).reset_index(drop=True)
-#    df_mc = (pd.read_hdf('dfs_sys/df_mc_{}_all_corr_final.h5'.format(EBEE))).sample(nEvt, random_state=100).reset_index(drop=True)
-    #df_mc = (pd.read_hdf('dfs_sys/df_mc_{}_all_corr_final.h5'.format(EBEE))).sample(nEvt, random_state=100).reset_index(drop=True)
-    df_mc = (pd.read_hdf('dfs_sys/split1/df_mc_{}_train_split1_corr.h5'.format(EBEE))).sample(nEvt, random_state=100, replace=True).reset_index(drop=True)
-#    df_mc = (pd.read_hdf('dfs_sys/split2/df_mc_{}_all_corr_final.h5'.format(EBEE))).sample(nEvt, random_state=100).reset_index(drop=True)
+    df_data = (pd.read_hdf('tmp_dfs/sys/df_data_{}_train_split1.h5'.format(EBEE))).sample(frac=1, replace=True).reset_index(drop=True)
+#    df_mc = (pd.read_hdf('dfs_corr/df_mc_{}_all_corr.h5'.format(EBEE))).sample(frac=1).reset_index(drop=True)
+#    df_mc = (pd.read_hdf('dfs_corr/df_mc_{}_all_corr_final.h5'.format(EBEE))).sample(frac=1).reset_index(drop=True)
+#    df_mc = (pd.read_hdf('dfs_sys/df_mc_{}_all_corr_final.h5'.format(EBEE))).sample(frac=1).reset_index(drop=True)
+    #df_mc = (pd.read_hdf('dfs_sys/df_mc_{}_all_corr_final.h5'.format(EBEE))).sample(frac=1).reset_index(drop=True)
+    df_mc = (pd.read_hdf('dfs_sys/split1/df_mc_{}_train_split1_corr.h5'.format(EBEE))).sample(frac=1, replace=True).reset_index(drop=True)
+#    df_mc = (pd.read_hdf('dfs_sys/split2/df_mc_{}_all_corr_final.h5'.format(EBEE))).sample(frac=1).reset_index(drop=True)
 
 
 #    plotsdir = f'test/plots/split1/{EBEE}'
@@ -397,7 +394,8 @@ def main(options):
 
     if EBEE != 'EB': 
         vars_corr = vars_corr + ['{}_corr'.format(var) for var in preshower]
-    isoVars = isoVarsPh+isoVarsCh
+    #isoVars = isoVarsPh+isoVarsCh
+    isoVars = []
     isoVars_shift = ['{}_shift'.format(var) for var in isoVars]
     isoVars_corr = ['{}_corr'.format(var) for var in isoVars]
 
@@ -411,10 +409,10 @@ def main(options):
     df_data[phoIDname] = np.concatenate(Parallel(n_jobs=10, verbose=20)(delayed(helpComputeIdMva)(weightsEB, weightsEE, EBEE, vars_qrnn+isoVars, df_data[ch:ch+stride], 'data', False) for ch in range(0, df_data.index.size, stride))) # variables+isoVars
 #    print('Compute photon ID MVA for uncorrected mc')
 #    stride = int(df_mc.index.size/10) + 1
-#    df_mc[phoIDname] = np.concatenate(Parallel(n_jobs=10, verbose=20)(delayed(helpComputeIdMva)(weightsEB, weightsEE, EBEE, vars_qrnn+isoVars, df_mc[ch:ch+stride], 'data', False) for ch in range(0, df_data.index.size, stride))) # variables+isoVars
+    df_mc[phoIDname] = np.concatenate(Parallel(n_jobs=10, verbose=20)(delayed(helpComputeIdMva)(weightsEB, weightsEE, EBEE, vars_qrnn+isoVars, df_mc[ch:ch+stride], 'data', False) for ch in range(0, df_mc.index.size, stride))) # variables+isoVars
 ###    df_mc[phoIDname] = helpComputeIdMva(weightsEB, weightsEE, EBEE, vars_qrnn+isoVars, df_mc, 'data', False) # +isoVars 
 #    print('Compute photon ID MVA for corrected mc')
-#    df_mc['{}_corr'.format(phoIDname)] = np.concatenate(Parallel(n_jobs=10, verbose=20)(delayed(helpComputeIdMva)(weightsEB, weightsEE, EBEE, vars_qrnn+isoVars, df_mc[ch:ch+stride], 'qr', False) for ch in range(0, df_data.index.size, stride))) # variables+isoVars
+    df_mc['{}_corr'.format(phoIDname)] = np.concatenate(Parallel(n_jobs=10, verbose=20)(delayed(helpComputeIdMva)(weightsEB, weightsEE, EBEE, vars_qrnn+isoVars, df_mc[ch:ch+stride], 'qr', False) for ch in range(0, df_mc.index.size, stride))) # variables+isoVars
 ##    df_mc['{}_corr'.format(phoIDname)] = helpComputeIdMva(weightsEB, weightsEE, EBEE, vars_qrnn+isoVars, df_mc, 'qr', False) # +isoVars+preshower 
 #    print('Compute photon ID MVA for final correction on mc')
 #    df_mc['{}_corr_final'.format(phoIDname)] = np.concatenate(Parallel(n_jobs=10, verbose=20)(delayed(helpComputeIdMva)(weightsEB, weightsEE, EBEE, vars_qrnn+isoVars, df_mc[ch:ch+stride], 'final', False) for ch in range(0, df_data.index.size, stride))) # variables+isoVars
@@ -435,7 +433,7 @@ def main(options):
     if EBEE == 'EB':
         histranges = {'probeS4':(0., 1.), 
                       'probeR9':(0., 1.2), 
-                      'probeCovarianceIeIp':(-2.e-4, 2.e-4), 
+                      'probeCovarianceIeIp':(-2.e-5, 2.e-5), 
                       'probePhiWidth':(0., 0.2), 
                       'probeSigmaIeIe':(0., 2.e-2), 
                       'probeEtaWidth':(0., 0.05), 
@@ -445,7 +443,7 @@ def main(options):
     else: 
         histranges = {'probeS4':(0., 1.), 
                       'probeR9':(0., 1.2), 
-                      'probeCovarianceIeIp':(-1.5e-3, 1.5e-3), 
+                      'probeCovarianceIeIp':(-1.5e-5, 1.5e-5), 
                       'probePhiWidth':(0., 0.2), 
                       'probeSigmaIeIe':(0.01, 0.05), 
                       'probeEtaWidth':(0., 0.05), 
@@ -512,8 +510,8 @@ def main(options):
             draw_hist(df_data, df_mc, target, fig_name, bins, histranges[target], mc_weights=df_mc['weight_clf'], logplot=logplots[target], final=False, sysuncer=False)
              
             for x, xtitle, xname in zip(xs, xtitles, xnames): 
-                draw_mean_plot(EBEE, df_data, df_mc, x, xtitle, xname, target, plotsdir, final=True)
-                draw_dist_plot(EBEE, df_data, df_mc, qs, x, xtitle, xname, target, plotsdir, final=True)
+                draw_mean_plot(EBEE, df_data, df_mc, x, xtitle, xname, target, plotsdir, final=False)
+                draw_dist_plot(EBEE, df_data, df_mc, qs, x, xtitle, xname, target, plotsdir, final=False)
 
   
     draw_hist(
@@ -540,6 +538,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     requiredArgs = parser.add_argument_group('Required Arguements')
     requiredArgs.add_argument('-e','--EBEE', action='store', type=str, required=True)
-    requiredArgs.add_argument('-n','--nEvt', action='store', type=int, required=True)
+    optArgs = parser.add_argument_group('Optional Arguments')
+    optArgs.add_argument('-nc','--nocorr', action='store', type=int)
     options = parser.parse_args()
     main(options)

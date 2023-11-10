@@ -1,0 +1,116 @@
+Compute photon ID MVA for data
+[Parallel(n_jobs=10)]: Using backend LokyBackend with 10 concurrent workers.
+[Parallel(n_jobs=10)]: Done   1 tasks      | elapsed:   47.0s
+[Parallel(n_jobs=10)]: Done   2 out of  10 | elapsed:   47.4s remaining:  3.2min
+[Parallel(n_jobs=10)]: Done   3 out of  10 | elapsed:   52.2s remaining:  2.0min
+[Parallel(n_jobs=10)]: Done   4 out of  10 | elapsed:   52.7s remaining:  1.3min
+[Parallel(n_jobs=10)]: Done   5 out of  10 | elapsed:  1.0min remaining:  1.0min
+[Parallel(n_jobs=10)]: Done   6 out of  10 | elapsed:  1.1min remaining:   43.9s
+[Parallel(n_jobs=10)]: Done   7 out of  10 | elapsed:  1.1min remaining:   28.4s
+[Parallel(n_jobs=10)]: Done   8 out of  10 | elapsed:  1.1min remaining:   17.0s
+[Parallel(n_jobs=10)]: Done  10 out of  10 | elapsed:  1.1min remaining:    0.0s
+[Parallel(n_jobs=10)]: Done  10 out of  10 | elapsed:  1.1min finished
+[Parallel(n_jobs=10)]: Using backend LokyBackend with 10 concurrent workers.
+[Parallel(n_jobs=10)]: Done   1 tasks      | elapsed:   32.5s
+[Parallel(n_jobs=10)]: Done   2 out of  10 | elapsed:   33.1s remaining:  2.2min
+[Parallel(n_jobs=10)]: Done   3 out of  10 | elapsed:   48.9s remaining:  1.9min
+[Parallel(n_jobs=10)]: Done   4 out of  10 | elapsed:   51.4s remaining:  1.3min
+[Parallel(n_jobs=10)]: Done   5 out of  10 | elapsed:   56.3s remaining:   56.3s
+[Parallel(n_jobs=10)]: Done   6 out of  10 | elapsed:   58.1s remaining:   38.7s
+[Parallel(n_jobs=10)]: Done   7 out of  10 | elapsed:   58.2s remaining:   24.9s
+[Parallel(n_jobs=10)]: Done   8 out of  10 | elapsed:  1.0min remaining:   15.1s
+[Parallel(n_jobs=10)]: Done  10 out of  10 | elapsed:  1.0min remaining:    0.0s
+[Parallel(n_jobs=10)]: Done  10 out of  10 | elapsed:  1.0min finished
+[Parallel(n_jobs=10)]: Using backend LokyBackend with 10 concurrent workers.
+[Parallel(n_jobs=10)]: Done   1 tasks      | elapsed:   42.5s
+[Parallel(n_jobs=10)]: Done   2 out of  10 | elapsed:   45.4s remaining:  3.0min
+[Parallel(n_jobs=10)]: Done   3 out of  10 | elapsed:   50.5s remaining:  2.0min
+[Parallel(n_jobs=10)]: Done   4 out of  10 | elapsed:   50.7s remaining:  1.3min
+[Parallel(n_jobs=10)]: Done   5 out of  10 | elapsed:   55.1s remaining:   55.1s
+[Parallel(n_jobs=10)]: Done   6 out of  10 | elapsed:   56.4s remaining:   37.6s
+[Parallel(n_jobs=10)]: Done   7 out of  10 | elapsed:   58.5s remaining:   25.1s
+[Parallel(n_jobs=10)]: Done   8 out of  10 | elapsed:  1.0min remaining:   15.6s
+[Parallel(n_jobs=10)]: Done  10 out of  10 | elapsed:  1.1min remaining:    0.0s
+[Parallel(n_jobs=10)]: Done  10 out of  10 | elapsed:  1.1min finished
+findfont: Font family ['Helvetica'] not found. Falling back to DejaVu Sans.
+findfont: Font family ['Helvetica'] not found. Falling back to DejaVu Sans.
+findfont: Font family ['Helvetica'] not found. Falling back to DejaVu Sans.
+time spent in computing photon ID MVA: 0-00:03:20.61
+Index(['probeScEta', 'probeSigmaRR', 'tagChIso03', 'tagR9', 'tagPhiWidth',
+       'probePt', 'tagSigmaRR', 'tagPhi', 'probe_energyRaw', 'tag_pfPhoIso03',
+       'tagScEta', 'tagPt', 'tagS4', 'tagSigmaIeIe', 'tag_sipip', 'tag_sieip',
+       'tag_energyRaw', 'tagChIso03worst', 'probePhi', 'probe_sipip',
+       'tagEtaWidth', 'probeHoE', 'probe_pfRelIso03_all_quadratic',
+       'probePassEleVeto', 'probePhoIso', 'tag_pfRelIso03_all_quadratic',
+       'probeEtaWidth', 'probeR9', 'probeS4', 'probePhiWidth',
+       'probeSigmaIeIe', 'probe_sieip', 'probeChIso03', 'probeChIso03worst',
+       'probeesEnergyOverSCRawEnergy', 'rho', 'mass', 'probeScEnergy',
+       'tagScEnergy', 'probeNeutIso', 'tagNeutIso', 'tagCovarianceIpIp',
+       'tagCovarianceIeIp', 'probeCovarianceIpIp', 'probeCovarianceIeIp',
+       'ml_weight', 'probeScEta_orignal', 'probeCovarianceIeIp_corr',
+       'probeS4_corr', 'probeR9_corr', 'probePhiWidth_corr',
+       'probeSigmaIeIe_corr', 'probeEtaWidth_corr', 'probePhoIdMVA',
+       'probePhoIdMVA_corr'],
+      dtype='object')
+Computing weights
+Loaded classifier from file transformer/4d_reweighting_EE_all.pkl
+Using uncorrected variables
+['probeScEnergy', 'probeScEta', 'rho', 'probeR9', 'probeSigmaIeIe', 'probePhiWidth', 'probeEtaWidth', 'probeCovarianceIeIp', 'probeS4', 'probePhoIso', 'probeChIso03', 'probeChIso03worst', 'probeSigmaRR', 'probeesEnergyOverSCRawEnergy', 'probePt']
+Using uncorrected variables
+['probeScEnergy', 'probeScEta', 'rho', 'probeR9', 'probeSigmaIeIe', 'probePhiWidth', 'probeEtaWidth', 'probeCovarianceIeIp', 'probeS4', 'probePhoIso', 'probeChIso03', 'probeChIso03worst', 'probeSigmaRR', 'probeesEnergyOverSCRawEnergy', 'probePt']
+Using variables corrected by quantile regression
+<map object at 0x7f8020720668>
+Using uncorrected variables
+['probeScEnergy', 'probeScEta', 'rho', 'probeR9', 'probeSigmaIeIe', 'probePhiWidth', 'probeEtaWidth', 'probeCovarianceIeIp', 'probeS4', 'probePhoIso', 'probeChIso03', 'probeChIso03worst', 'probeSigmaRR', 'probeesEnergyOverSCRawEnergy', 'probePt']
+Using uncorrected variables
+['probeScEnergy', 'probeScEta', 'rho', 'probeR9', 'probeSigmaIeIe', 'probePhiWidth', 'probeEtaWidth', 'probeCovarianceIeIp', 'probeS4', 'probePhoIso', 'probeChIso03', 'probeChIso03worst', 'probeSigmaRR', 'probeesEnergyOverSCRawEnergy', 'probePt']
+Using variables corrected by quantile regression
+<map object at 0x7fa0e17826a0>
+Using uncorrected variables
+['probeScEnergy', 'probeScEta', 'rho', 'probeR9', 'probeSigmaIeIe', 'probePhiWidth', 'probeEtaWidth', 'probeCovarianceIeIp', 'probeS4', 'probePhoIso', 'probeChIso03', 'probeChIso03worst', 'probeSigmaRR', 'probeesEnergyOverSCRawEnergy', 'probePt']
+Using uncorrected variables
+['probeScEnergy', 'probeScEta', 'rho', 'probeR9', 'probeSigmaIeIe', 'probePhiWidth', 'probeEtaWidth', 'probeCovarianceIeIp', 'probeS4', 'probePhoIso', 'probeChIso03', 'probeChIso03worst', 'probeSigmaRR', 'probeesEnergyOverSCRawEnergy', 'probePt']
+Using variables corrected by quantile regression
+<map object at 0x7f7f3052a710>
+Using uncorrected variables
+['probeScEnergy', 'probeScEta', 'rho', 'probeR9', 'probeSigmaIeIe', 'probePhiWidth', 'probeEtaWidth', 'probeCovarianceIeIp', 'probeS4', 'probePhoIso', 'probeChIso03', 'probeChIso03worst', 'probeSigmaRR', 'probeesEnergyOverSCRawEnergy', 'probePt']
+Using uncorrected variables
+['probeScEnergy', 'probeScEta', 'rho', 'probeR9', 'probeSigmaIeIe', 'probePhiWidth', 'probeEtaWidth', 'probeCovarianceIeIp', 'probeS4', 'probePhoIso', 'probeChIso03', 'probeChIso03worst', 'probeSigmaRR', 'probeesEnergyOverSCRawEnergy', 'probePt']
+Using variables corrected by quantile regression
+<map object at 0x7fa91aea1710>
+Using uncorrected variables
+['probeScEnergy', 'probeScEta', 'rho', 'probeR9', 'probeSigmaIeIe', 'probePhiWidth', 'probeEtaWidth', 'probeCovarianceIeIp', 'probeS4', 'probePhoIso', 'probeChIso03', 'probeChIso03worst', 'probeSigmaRR', 'probeesEnergyOverSCRawEnergy', 'probePt']
+Using uncorrected variables
+['probeScEnergy', 'probeScEta', 'rho', 'probeR9', 'probeSigmaIeIe', 'probePhiWidth', 'probeEtaWidth', 'probeCovarianceIeIp', 'probeS4', 'probePhoIso', 'probeChIso03', 'probeChIso03worst', 'probeSigmaRR', 'probeesEnergyOverSCRawEnergy', 'probePt']
+Using variables corrected by quantile regression
+<map object at 0x7fbe8ab15780>
+Using uncorrected variables
+['probeScEnergy', 'probeScEta', 'rho', 'probeR9', 'probeSigmaIeIe', 'probePhiWidth', 'probeEtaWidth', 'probeCovarianceIeIp', 'probeS4', 'probePhoIso', 'probeChIso03', 'probeChIso03worst', 'probeSigmaRR', 'probeesEnergyOverSCRawEnergy', 'probePt']
+Using uncorrected variables
+['probeScEnergy', 'probeScEta', 'rho', 'probeR9', 'probeSigmaIeIe', 'probePhiWidth', 'probeEtaWidth', 'probeCovarianceIeIp', 'probeS4', 'probePhoIso', 'probeChIso03', 'probeChIso03worst', 'probeSigmaRR', 'probeesEnergyOverSCRawEnergy', 'probePt']
+Using variables corrected by quantile regression
+<map object at 0x7f743d23b710>
+Using uncorrected variables
+['probeScEnergy', 'probeScEta', 'rho', 'probeR9', 'probeSigmaIeIe', 'probePhiWidth', 'probeEtaWidth', 'probeCovarianceIeIp', 'probeS4', 'probePhoIso', 'probeChIso03', 'probeChIso03worst', 'probeSigmaRR', 'probeesEnergyOverSCRawEnergy', 'probePt']
+Using uncorrected variables
+['probeScEnergy', 'probeScEta', 'rho', 'probeR9', 'probeSigmaIeIe', 'probePhiWidth', 'probeEtaWidth', 'probeCovarianceIeIp', 'probeS4', 'probePhoIso', 'probeChIso03', 'probeChIso03worst', 'probeSigmaRR', 'probeesEnergyOverSCRawEnergy', 'probePt']
+Using variables corrected by quantile regression
+<map object at 0x7f686f845550>
+Using uncorrected variables
+['probeScEnergy', 'probeScEta', 'rho', 'probeR9', 'probeSigmaIeIe', 'probePhiWidth', 'probeEtaWidth', 'probeCovarianceIeIp', 'probeS4', 'probePhoIso', 'probeChIso03', 'probeChIso03worst', 'probeSigmaRR', 'probeesEnergyOverSCRawEnergy', 'probePt']
+Using uncorrected variables
+['probeScEnergy', 'probeScEta', 'rho', 'probeR9', 'probeSigmaIeIe', 'probePhiWidth', 'probeEtaWidth', 'probeCovarianceIeIp', 'probeS4', 'probePhoIso', 'probeChIso03', 'probeChIso03worst', 'probeSigmaRR', 'probeesEnergyOverSCRawEnergy', 'probePt']
+Using variables corrected by quantile regression
+<map object at 0x7f024ec12cf8>
+Using uncorrected variables
+['probeScEnergy', 'probeScEta', 'rho', 'probeR9', 'probeSigmaIeIe', 'probePhiWidth', 'probeEtaWidth', 'probeCovarianceIeIp', 'probeS4', 'probePhoIso', 'probeChIso03', 'probeChIso03worst', 'probeSigmaRR', 'probeesEnergyOverSCRawEnergy', 'probePt']
+Using uncorrected variables
+['probeScEnergy', 'probeScEta', 'rho', 'probeR9', 'probeSigmaIeIe', 'probePhiWidth', 'probeEtaWidth', 'probeCovarianceIeIp', 'probeS4', 'probePhoIso', 'probeChIso03', 'probeChIso03worst', 'probeSigmaRR', 'probeesEnergyOverSCRawEnergy', 'probePt']
+Using variables corrected by quantile regression
+<map object at 0x7f158b6e3630>
+Using uncorrected variables
+['probeScEnergy', 'probeScEta', 'rho', 'probeR9', 'probeSigmaIeIe', 'probePhiWidth', 'probeEtaWidth', 'probeCovarianceIeIp', 'probeS4', 'probePhoIso', 'probeChIso03', 'probeChIso03worst', 'probeSigmaRR', 'probeesEnergyOverSCRawEnergy', 'probePt']
+Using uncorrected variables
+['probeScEnergy', 'probeScEta', 'rho', 'probeR9', 'probeSigmaIeIe', 'probePhiWidth', 'probeEtaWidth', 'probeCovarianceIeIp', 'probeS4', 'probePhoIso', 'probeChIso03', 'probeChIso03worst', 'probeSigmaRR', 'probeesEnergyOverSCRawEnergy', 'probePt']
+Using variables corrected by quantile regression
+<map object at 0x7ff094dff5c0>

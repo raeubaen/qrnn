@@ -72,6 +72,7 @@ def main(options):
 #            df = pd.read_hdf('dataframes/{}'.format(inputfile))
             try: 
                 df = pd.read_hdf(f'{dfDir}/{inputfile}')
+                df = df.dropna()
             except FileNotFoundError as fe: 
                 print(f'{fe}\ncontinue')
                 continue

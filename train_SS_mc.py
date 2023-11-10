@@ -44,7 +44,7 @@ def main(options):
    
     #load dataframe
     nEvt = options.nEvt
-    df_train = (pd.read_hdf(inputtrain).loc[:,kinrho+variables+weight]).sample(nEvt, random_state=100).reset_index(drop=True)
+    df_train = (pd.read_hdf(inputtrain).loc[:,kinrho+variables+weight]).sample(frac=1).reset_index(drop=True)
     
     #transform features and targets
     transformer_file = 'data_{}'.format(EBEE)
@@ -55,6 +55,17 @@ def main(options):
 #    num_hidden_layers = 6
 #    num_connected_layers = 3
 #    num_units = [30, 25, 20, 30, 25, 10]
+
+    '''
+    num_hidden_layers = 5
+    num_connected_layers = 3
+    num_units = [8, 8, 8, 16, 16]
+    act = ['relu' for _ in range(num_hidden_layers)]
+    act[-1] = 'tanh'
+    dropout = [0.4, 0.4, 0.4, 0.4]
+    gauss_std = [0.2, 0.2, 0.2, 0.2, 0.2]
+    '''
+
     num_hidden_layers = 5
     num_connected_layers = 2
     num_units = [30, 15, 20, 15, 10]
@@ -105,7 +116,7 @@ def main(options):
                 l2lam = 1.e-3, 
                 opt = 'Adadelta', lr = 0.5, 
                 batch_size = batch_size, 
-                epochs = 1000, 
+                epochs = 300, 
                 save_file = model_file_mc, 
                 )
 

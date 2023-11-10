@@ -14,7 +14,7 @@ if [ $2 -le 1 ]; then
 fi
 
 EBEE=(EB EE)
-nEvt=(500000 500000)
+nEvt=(1950000 0)
 if [ $2 -le 2 ]; then
   for i in ${!EBEE[@]}; 
   do
@@ -22,8 +22,6 @@ if [ $2 -le 2 ]; then
   done;
 fi
 
-EBEE=(EB EE)
-nEvt=(500000 500000)
 if [ $2 -le 3 ]; then
   for i in ${!EBEE[@]};
   do
@@ -44,5 +42,3 @@ fi
 
 tottime=$(echo "$(date +%s) - $begin" | bc)
 echo ">>>>>>>>>>>>>>>>>>>> time spent: $tottime s"
-
-

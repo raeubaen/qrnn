@@ -7,6 +7,7 @@ class Corrector:
    def __init__(self,mc_model,data_model,X,Y,qs,qweights,scale_par=None,diz=False):
       self.diz=diz #Flag for distribution with discrete 0, i.e. Isolation
       self.mcqtls   = np.array(predict(X,qs,qweights,mc_model,scale_par))
+      print(f"net output: {self.mcqtls}, {self.mcqtls.shape}")
       self.dataqtls = np.array(predict(X,qs,qweights,data_model,scale_par))
 
       self.Y = np.array(Y)
