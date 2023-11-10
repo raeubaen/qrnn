@@ -17,7 +17,7 @@ def make_dataframe(path, tree, data_key, EBEE, dfDir, dfname, cut=None, split=No
                 'tag_sipip', 'tag_sieip', 'tag_energyRaw',
                 'tag_pfChargedIsoWorstVtx', 'probe_phi', 'probe_sipip',
                 'tag_etaWidth', 'probe_hoe',
-                'probe_pfRelIso03_all_Fall17V2', 'probe_electronVeto', 'probe_pfPhoIso03', 'tag_pfRelIso03_all_Fall17V2']
+                'probe_pfRelIso03_all_quadratic', 'probe_electronVeto', 'probe_pfPhoIso03', 'tag_pfRelIso03_all_quadratic']
 
     variables = ['probe_etaWidth', 'probe_r9', 'probe_s4',
                 'probe_phiWidth', 'probe_sieie',
@@ -55,8 +55,8 @@ def make_dataframe(path, tree, data_key, EBEE, dfDir, dfname, cut=None, split=No
     df["mass"] = np.sqrt(2*df.tag_pt*df.probe_pt * ( np.cosh(df.tag_ScEta - df.probe_ScEta) - np.cos(df.tag_phi - df.probe_phi) ) )
     df["probeScEnergy"] = df.probe_pt/np.sin(2*np.arctan(np.exp(-np.abs(df.probe_ScEta))))
     df["tagScEnergy"] = df.tag_pt/np.sin(2*np.arctan(np.exp(-np.abs(df.tag_ScEta))))
-    df["probeNeutIso"] = df.probe_pfRelIso03_all_Fall17V2 * df.probe_pt - df.probe_pfChargedIsoPFPV - df.probe_pfPhoIso03
-    df["tagNeutIso"] = df.tag_pfRelIso03_all_Fall17V2 * df.tag_pt - df.tag_pfChargedIsoPFPV - df.tag_pfPhoIso03
+    df["probeNeutIso"] = df.probe_pfRelIso03_all_quadratic * df.probe_pt - df.probe_pfChargedIsoPFPV - df.probe_pfPhoIso03
+    df["tagNeutIso"] = df.tag_pfRelIso03_all_quadratic * df.tag_pt - df.tag_pfChargedIsoPFPV - df.tag_pfPhoIso03
 
     df['tagCovarianceIpIp'] = df.tag_sipip**2
     df['tagCovarianceIeIp'] = df.tag_sieip**2

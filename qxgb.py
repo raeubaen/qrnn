@@ -15,9 +15,11 @@ def trainQuantile(X, Y, qs, sample_weight=None, epochs=10, checkpoint_dir='./ckp
     alpha = np.array(qs)
     evals_result: Dict[str, Dict] = {}
 
-    X_train, X_val, y_train, y_val = train_test_split(X, Y, test_size=0.1)
-    Xy = xgb.QuantileDMatrix(X, y, weight=sample_weight)
-    Xy_val = xgb.QuantileDMatrix(X_val, y_val, ref=Xy)
+    X_train, X_val, y_train, y_val, W_train, W_val= train_test_split(X, Y, sample_weight, test_size=0.1)
+    Xy_train = xgb.QuantileDMatrix(X_train, y_train, weight=W_train)
+    Xy_val = xgb.QuantileDMatrix(X_val, y_val, ref=Xy_train, weight=W_val)
+
+    watchlist  = [(Xy_train,'qloss'), (Xy_val, 'qloss')]
 
     booster = xgb.train(
         {
@@ -25,12 +27,15 @@ def trainQuantile(X, Y, qs, sample_weight=None, epochs=10, checkpoint_dir='./ckp
             "tree_method": "hist",
             "quantile_alpha": alpha,
             "learning_rate": 0.04,
-            "max_depth": 30,
+            "max_depth": 10,
+            "device": "cuda:0"
         },
-        Xy,
-        num_boost_round=64,
+        Xy_train,
+        1000,
+        watchlist
+        num_boost_round=128,
         early_stopping_rounds=3,
-        evals=[(Xy, "Train"), (Xy_val, "Val")],
+        evals=[(Xy_train, "Train"), (Xy_val, "Val")],
         evals_result=evals_result,
     )
 
@@ -39,7 +44,7 @@ def trainQuantile(X, Y, qs, sample_weight=None, epochs=10, checkpoint_dir='./ckp
 
     return history, eval_results
 
- 
+
 def predict(X, qs, qweights, model_from=None, scale_par=None):
 
     booster = xgboost.load_model(model_from)
@@ -51,7 +56,7 @@ def predict(X, qs, qweights, model_from=None, scale_par=None):
         predY = predY*scale_par['sigma'] + scale_par['mu']
 
     return predY
-        
+
 
 def scale(df, scale_file):
 

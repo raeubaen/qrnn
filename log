@@ -1,0 +1,153 @@
+/afs/cern.ch/work/r/rgargiul/gpuenv/lib64/python3.9/site-packages/sklearn/base.py:347: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 0.24.2 when using version 1.3.0. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/afs/cern.ch/work/r/rgargiul/gpuenv/lib64/python3.9/site-packages/sklearn/base.py:347: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 0.24.2 when using version 1.3.0. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/afs/cern.ch/work/r/rgargiul/gpuenv/lib64/python3.9/site-packages/sklearn/base.py:347: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 0.24.2 when using version 1.3.0. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/afs/cern.ch/work/r/rgargiul/gpuenv/lib64/python3.9/site-packages/sklearn/base.py:347: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 0.24.2 when using version 1.3.0. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/afs/cern.ch/work/r/rgargiul/gpuenv/lib64/python3.9/site-packages/sklearn/base.py:347: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 0.24.2 when using version 1.3.0. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/afs/cern.ch/work/r/rgargiul/gpuenv/lib64/python3.9/site-packages/sklearn/base.py:347: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 0.24.2 when using version 1.3.0. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/afs/cern.ch/work/r/rgargiul/gpuenv/lib64/python3.9/site-packages/sklearn/base.py:347: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 0.24.2 when using version 1.3.0. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/afs/cern.ch/work/r/rgargiul/gpuenv/lib64/python3.9/site-packages/sklearn/base.py:347: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 0.24.2 when using version 1.3.0. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/afs/cern.ch/work/r/rgargiul/gpuenv/lib64/python3.9/site-packages/sklearn/base.py:347: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 0.24.2 when using version 1.3.0. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/afs/cern.ch/work/r/rgargiul/gpuenv/lib64/python3.9/site-packages/sklearn/base.py:347: InconsistentVersionWarning: Trying to unpickle estimator StandardScaler from version 0.24.2 when using version 1.3.0. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+transform for probePt with transformer/data_EB_probePt.pkl
+transform for probeScEta with transformer/data_EB_probeScEta.pkl
+transform for probePhi with transformer/data_EB_probePhi.pkl
+transform for rho with transformer/data_EB_rho.pkl
+transform for probeCovarianceIeIp with transformer/data_EB_probeCovarianceIeIp.pkl
+transform for probeS4 with transformer/data_EB_probeS4.pkl
+transform for probeR9 with transformer/data_EB_probeR9.pkl
+transform for probePhiWidth with transformer/data_EB_probePhiWidth.pkl
+transform for probeSigmaIeIe with transformer/data_EB_probeSigmaIeIe.pkl
+transform for probeEtaWidth with transformer/data_EB_probeEtaWidth.pkl
+No weight found! 
+>>>>>>>>> train for variable probeCovarianceIeIp with features ['probePt', 'probeScEta', 'probePhi', 'rho']
+[0]	Train-quantile:0.16648	Val-quantile:0.14348
+[1]	Train-quantile:0.16164	Val-quantile:0.13939
+[2]	Train-quantile:0.15694	Val-quantile:0.13564
+[3]	Train-quantile:0.15271	Val-quantile:0.13208
+[4]	Train-quantile:0.14885	Val-quantile:0.12885
+[5]	Train-quantile:0.14524	Val-quantile:0.12587
+[6]	Train-quantile:0.14154	Val-quantile:0.12335
+[7]	Train-quantile:0.13813	Val-quantile:0.12080
+[8]	Train-quantile:0.13516	Val-quantile:0.11832
+[9]	Train-quantile:0.13236	Val-quantile:0.11607
+[10]	Train-quantile:0.12944	Val-quantile:0.11392
+[11]	Train-quantile:0.12698	Val-quantile:0.11196
+[12]	Train-quantile:0.12465	Val-quantile:0.11010
+[13]	Train-quantile:0.12248	Val-quantile:0.10836
+[14]	Train-quantile:0.12021	Val-quantile:0.10659
+[15]	Train-quantile:0.11829	Val-quantile:0.10509
+[16]	Train-quantile:0.11646	Val-quantile:0.10364
+[17]	Train-quantile:0.11471	Val-quantile:0.10228
+[18]	Train-quantile:0.11305	Val-quantile:0.10108
+[19]	Train-quantile:0.11145	Val-quantile:0.09984
+[20]	Train-quantile:0.10994	Val-quantile:0.09874
+[21]	Train-quantile:0.10847	Val-quantile:0.09771
+[22]	Train-quantile:0.10709	Val-quantile:0.09670
+[23]	Train-quantile:0.10582	Val-quantile:0.09572
+[24]	Train-quantile:0.10458	Val-quantile:0.09484
+[25]	Train-quantile:0.10340	Val-quantile:0.09398
+[26]	Train-quantile:0.10228	Val-quantile:0.09317
+[27]	Train-quantile:0.10126	Val-quantile:0.09244
+[28]	Train-quantile:0.10026	Val-quantile:0.09172
+[29]	Train-quantile:0.09934	Val-quantile:0.09116
+[30]	Train-quantile:0.09850	Val-quantile:0.09051
+[31]	Train-quantile:0.09769	Val-quantile:0.08991
+[32]	Train-quantile:0.09692	Val-quantile:0.08940
+[33]	Train-quantile:0.09617	Val-quantile:0.08908
+[34]	Train-quantile:0.09546	Val-quantile:0.08874
+[35]	Train-quantile:0.09482	Val-quantile:0.08830
+[36]	Train-quantile:0.09418	Val-quantile:0.08790
+[37]	Train-quantile:0.09361	Val-quantile:0.08752
+[38]	Train-quantile:0.09305	Val-quantile:0.08717
+[39]	Train-quantile:0.09252	Val-quantile:0.08684
+[40]	Train-quantile:0.09202	Val-quantile:0.08654
+[41]	Train-quantile:0.09154	Val-quantile:0.08623
+[42]	Train-quantile:0.09107	Val-quantile:0.08596
+[43]	Train-quantile:0.09064	Val-quantile:0.08565
+[44]	Train-quantile:0.09022	Val-quantile:0.08543
+[45]	Train-quantile:0.08981	Val-quantile:0.08522
+[46]	Train-quantile:0.08945	Val-quantile:0.08498
+[47]	Train-quantile:0.08911	Val-quantile:0.08483
+[48]	Train-quantile:0.08875	Val-quantile:0.08464
+[49]	Train-quantile:0.08843	Val-quantile:0.08445
+[50]	Train-quantile:0.08812	Val-quantile:0.08428
+[51]	Train-quantile:0.08782	Val-quantile:0.08414
+[52]	Train-quantile:0.08754	Val-quantile:0.08398
+[53]	Train-quantile:0.08730	Val-quantile:0.08388
+[54]	Train-quantile:0.08705	Val-quantile:0.08373
+[55]	Train-quantile:0.08682	Val-quantile:0.08362
+[56]	Train-quantile:0.08660	Val-quantile:0.08340
+[57]	Train-quantile:0.08641	Val-quantile:0.08332
+[58]	Train-quantile:0.08622	Val-quantile:0.08322
+[59]	Train-quantile:0.08604	Val-quantile:0.08315
+[60]	Train-quantile:0.08587	Val-quantile:0.08304
+[61]	Train-quantile:0.08569	Val-quantile:0.08297
+[62]	Train-quantile:0.08554	Val-quantile:0.08287
+[63]	Train-quantile:0.08539	Val-quantile:0.08280
+[64]	Train-quantile:0.08524	Val-quantile:0.08273
+[65]	Train-quantile:0.08511	Val-quantile:0.08266
+[66]	Train-quantile:0.08497	Val-quantile:0.08260
+[67]	Train-quantile:0.08485	Val-quantile:0.08254
+[68]	Train-quantile:0.08473	Val-quantile:0.08245
+[69]	Train-quantile:0.08462	Val-quantile:0.08239
+[70]	Train-quantile:0.08450	Val-quantile:0.08224
+[71]	Train-quantile:0.08440	Val-quantile:0.08219
+[72]	Train-quantile:0.08430	Val-quantile:0.08216
+[73]	Train-quantile:0.08419	Val-quantile:0.08211
+[74]	Train-quantile:0.08410	Val-quantile:0.08210
+[75]	Train-quantile:0.08399	Val-quantile:0.08205
+[76]	Train-quantile:0.08388	Val-quantile:0.08192
+[77]	Train-quantile:0.08377	Val-quantile:0.08193
+[78]	Train-quantile:0.08368	Val-quantile:0.08190
+[79]	Train-quantile:0.08359	Val-quantile:0.08187
+[80]	Train-quantile:0.08350	Val-quantile:0.08184
+[81]	Train-quantile:0.08342	Val-quantile:0.08182
+[82]	Train-quantile:0.08335	Val-quantile:0.08180
+[83]	Train-quantile:0.08326	Val-quantile:0.08179
+[84]	Train-quantile:0.08318	Val-quantile:0.08177
+[85]	Train-quantile:0.08311	Val-quantile:0.08176
+[86]	Train-quantile:0.08304	Val-quantile:0.08174
+[87]	Train-quantile:0.08298	Val-quantile:0.08173
+[88]	Train-quantile:0.08291	Val-quantile:0.08171
+[89]	Train-quantile:0.08285	Val-quantile:0.08170
+[90]	Train-quantile:0.08278	Val-quantile:0.08168
+[91]	Train-quantile:0.08272	Val-quantile:0.08168
+[92]	Train-quantile:0.08266	Val-quantile:0.08167
+[93]	Train-quantile:0.08262	Val-quantile:0.08166
+[94]	Train-quantile:0.08255	Val-quantile:0.08165
+[95]	Train-quantile:0.08250	Val-quantile:0.08165
+[96]	Train-quantile:0.08245	Val-quantile:0.08164
+[97]	Train-quantile:0.08240	Val-quantile:0.08164
+[98]	Train-quantile:0.08236	Val-quantile:0.08172
+[99]	Train-quantile:0.08230	Val-quantile:0.08177
+[100]	Train-quantile:0.08224	Val-quantile:0.08182
+/afs/cern.ch/work/r/rgargiul/gpuenv/lib/python3.9/site-packages/xgboost/core.py:160: UserWarning: [19:03:08] WARNING: /workspace/src/c_api/c_api.cc:1240: Saving into deprecated binary model format, please consider using `json` or `ubj`. Model format will default to JSON in XGBoost 2.2 if not specified.
+  warnings.warn(smsg, UserWarning)
+Traceback (most recent call last):
+  File "/afs/cern.ch/work/r/rgargiul/qrnn/train_SS_xgb.py", line 97, in <module>
+    main(options)
+  File "/afs/cern.ch/work/r/rgargiul/qrnn/train_SS_xgb.py", line 62, in main
+    history, eval_results = trainQuantile(
+  File "/afs/cern.ch/work/r/rgargiul/qrnn/qxgb.py", line 41, in trainQuantile
+    return history, eval_results
+NameError: name 'history' is not defined
